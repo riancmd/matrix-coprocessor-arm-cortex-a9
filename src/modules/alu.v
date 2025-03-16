@@ -12,7 +12,7 @@ module alu(input [2:0] op, //operation code
 	begin
 		case (op)
 			3'b000: //addM (add matrices)
-			3'b001: assign outr = adder(r1,r2comp); //subM (subtract matrices)
+			3'b001: assign outr = adder8(r1,r2comp); //subM (subtract matrices)
 			3'b010: //multM (multiply matrices)
 			3'b011: //multMR (multiply by real)
 			3'b100: //detM (determinant of matrix)

@@ -1,0 +1,6 @@
+module adder (input [7:0] r1, r2, //operands of 8bits
+				  input cin, //carryin
+				  output reg [7:0] s, cout);
+
+
+endmodule
