@@ -4,7 +4,6 @@ module alu(input [2:0] op, //operation code
 			  output reg signed [7:0] outr); //output result
 			  
 	reg signed [7:0] a, b;
-	//reg [7:0] negr2, r2f;
 	
 	localparam [2:0]
 		addM = 3'b000, //(add matrices)
@@ -16,8 +15,6 @@ module alu(input [2:0] op, //operation code
 		oppM = 3'b110, //(opposite matrix)
 		rst = 3'b111; //reset
 	
-	//assign negbb = ~r2;
-	//assign r2comp = negbb + 1; //handling 2's complement
 			
 	always @(*) begin
 		a = r1;
