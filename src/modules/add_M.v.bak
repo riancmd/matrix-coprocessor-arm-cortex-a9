@@ -1,0 +1,4 @@
+module add_M(input signed [7:0] m1, m2;
+				 output reg signed [7:0] m_out);
+
+endmodule

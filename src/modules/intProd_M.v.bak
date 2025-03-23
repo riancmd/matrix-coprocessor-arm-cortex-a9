@@ -1,0 +1,10 @@
+module intProd_M(input clk, //sinal de clock
+				 input signed [39:0] m1_l, m2_c, //linhas da matriz 1, coluna da matriz 2
+				 input rst, //sinal de reset
+				 output reg signed [39:0] m_out, //linha final
+				 output reg signed ovf); //overflow
+	
+	reg [15:0] temp_M; //valor temporário da linha para conter overflow
+	
+	
+endmodule

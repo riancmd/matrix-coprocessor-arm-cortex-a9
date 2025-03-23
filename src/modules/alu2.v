@@ -1,6 +1,6 @@
 module alu2(input [2:0] op, //operation code
-			  input signed [39:0] r1, //operand 1
-			  input signed [39:0] r2, //operand 2
+			  input signed [39:0] r1_1, r1_2, r1_3, r1_4, r1_5, //operand 1
+			  input signed [39:0] r2_1, r2_2, r2_3, r2_4, r2_5, //operand 2
 			  input [2:0] s, //size of the matrix
 			  output reg signed [39:0] outr, //output result
 			  output reg ovf); //lembrar de talvez mandar flag de overflow p cada bit
@@ -34,21 +34,21 @@ module alu2(input [2:0] op, //operation code
 		case (op)
 			//soma
 			addM : begin
-				temp_m[8:0] = r1[7:0] + r2[7:0];
-				temp_m[17:9] = r1[15:8] + r2[15:8];
-				temp_m[26:18] = r1[23:16] + r2[23:16];
-				temp_m[35:27] = r1[31:24] + r2[31:24];
-				temp_m[44:36] = r1[39:32] + r2[39:32];
+				temp_m[8:0] = r1_1[7:0] + r2_1[7:0];
+				temp_m[17:9] = r1_1[15:8] + r2_1[15:8];
+				temp_m[26:18] = r1_1[23:16] + r2_1[23:16];
+				temp_m[35:27] = r1_1[31:24] + r2_1[31:24];
+				temp_m[44:36] = r1_1[39:32] + r2_1[39:32];
 				
 				ovf = temp_m[8] || temp_m[17] || temp_m[26] || temp_m[35] ||temp_m[44];//Se houve overflow em qualquer um, flag
 			end
 			//subtração
 			subM : begin
-				temp_m[8:0] = r1[7:0] - r2[7:0];
-				temp_m[17:9] = r1[15:8] - r2[15:8];
-				temp_m[26:18] = r1[23:16] - r2[23:16];
-				temp_m[35:27] = r1[31:24] - r2[31:24];
-				temp_m[44:36] = r1[39:32] - r2[39:32];
+				temp_m[8:0] = r1_1[7:0] - r2_1[7:0];
+				temp_m[17:9] = r1_1[15:8] - r2_1[15:8];
+				temp_m[26:18] = r1_1[23:16] - r2_1[23:16];
+				temp_m[35:27] = r1_1[31:24] - r2_1[31:24];
+				temp_m[44:36] = r1_1[39:32] - r2_1[39:32];
 				
 				ovf = temp_m[8] || temp_m[17] || temp_m[26] || temp_m[35] ||temp_m[44];//Se houve overflow em qualquer um, flag
 			end
@@ -58,11 +58,11 @@ module alu2(input [2:0] op, //operation code
 			end
 			//multiplicação real por matriz
 			multMR : begin
-				temp_m[8:0] = r1[7:0] * r2[7:0];
-				temp_m[17:9] = r1[15:8] * r2[7:0];
-				temp_m[26:18] = r1[23:16] * r2[7:0];
-				temp_m[35:27] = r1[31:24] * r2[7:0];
-				temp_m[44:36] = r1[39:32] * r2[7:0];
+				temp_m[8:0] = r1_1[7:0] * r2_1[7:0];
+				temp_m[17:9] = r1_1[15:8] * r2_1[15:8];
+				temp_m[26:18] = r1_1[23:16] * r2_1[23:16];
+				temp_m[35:27] = r1_1[31:24] * r2_1[31:24];
+				temp_m[44:36] = r1_1[39:32] * r2_1[39:32];
 				
 				ovf = temp_m[8] || temp_m[17] || temp_m[26] || temp_m[35] ||temp_m[44];//Se houve overflow em qualquer um, flag
 			end

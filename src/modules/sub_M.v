@@ -1,0 +1,30 @@
+//Este módulo subtrai duas linhas, considerando cada uma com 40 bits
+module sub_M(input clk, //sinal de clock
+				 input signed [39:0] m1, m2, //linhas da matriz 1 e 2
+				 input rst, //sinal de reset
+				 output reg signed [39:0] m_out, //linha final
+				 output reg signed ovf); //overflow
+				 
+	reg signed [44:0] temp_m; //registrador com valor temporário do cálculo
+	
+	always@(posedge clk or posedge rst) begin
+		if(rst) begin //se houver sinal de reset
+			ovf = 0; 
+			temp_m = 45'b0;			
+		end
+		else begin //nõ
+			temp_m[44:36] = {1'b0, m1[39:32]} - {1'b0, m2[39:32]}; //primeira subtração
+			temp_m[34:27] = {1'b0, m1[31:24]} - {1'b0, m2[31:24]}; //segunda subtração
+			temp_m[25:18] = {1'b0, m1[23:16]} - {1'b0, m2[23:16]}; //terceira subtração
+			temp_m[16:9]  = {1'b0, m1[15:8]}  - {1'b0, m2[15:8]};  //quarta subtração
+			temp_m[7:0]   = {1'b0, m1[7:0]}   - {1'b0, m2[7:0]};   //quinta subtração
+
+			ovf = temp_m[8] || temp_m[17] || temp_m[26] || temp_m[35] || temp_m[44]; //verifica overflow no MSB de cada número
+		end
+		
+		m_out = {temp_m[43:36], temp_m[34:27], temp_m[25:18], temp_m[16:9], temp_m[7:0]}; //manda linha para saída
+		
+	end
+	
+
+endmodule
