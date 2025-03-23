@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Fri Mar 21 11:57:10 2025
+Analysis & Synthesis Status : Successful - Sat Mar 22 22:51:16 2025
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : coprocessor
-Top-level Entity Name : alu
+Top-level Entity Name : alu2
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
 Total registers : 0
-Total pins : 30
+Total pins : 127
 Total virtual pins : 0
 Total block memory bits : 0
-Total DSP Blocks : 1
+Total DSP Blocks : 0
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

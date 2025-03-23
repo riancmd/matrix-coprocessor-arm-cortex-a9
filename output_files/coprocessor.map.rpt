@@ -1,5 +1,5 @@
 Analysis & Synthesis report for coprocessor
-Fri Mar 21 11:57:11 2025
+Sat Mar 22 22:51:16 2025
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -13,12 +13,11 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis DSP Block Usage Summary
+  8. User-Specified and Inferred Latches
   9. General Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Post-Synthesis Netlist Statistics for Top Partition
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -45,17 +44,17 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Mar 21 11:57:10 2025       ;
+; Analysis & Synthesis Status     ; Successful - Sat Mar 22 22:51:16 2025       ;
 ; Quartus Prime Version           ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                   ; coprocessor                                 ;
-; Top-level Entity Name           ; alu                                         ;
+; Top-level Entity Name           ; alu2                                        ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
 ; Total registers                 ; 0                                           ;
-; Total pins                      ; 30                                          ;
+; Total pins                      ; 127                                         ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
-; Total DSP Blocks                ; 1                                           ;
+; Total DSP Blocks                ; 0                                           ;
 ; Total HSSI RX PCSs              ; 0                                           ;
 ; Total HSSI PMA RX Deserializers ; 0                                           ;
 ; Total HSSI TX PCSs              ; 0                                           ;
@@ -71,7 +70,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; alu                ; coprocessor        ;
+; Top-level entity name                                                           ; alu2               ; coprocessor        ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -168,40 +167,40 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                  ; Library ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------+---------+
-; src/modules/alu.v                ; yes             ; User Verilog HDL File  ; C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu.v ;         ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                 ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                   ; Library ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; src/modules/alu2.v               ; yes             ; User Verilog HDL File  ; C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v ;         ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary               ;
-+---------------------------------------------+-------------+
-; Resource                                    ; Usage       ;
-+---------------------------------------------+-------------+
-; Estimate of Logic utilization (ALMs needed) ; 9           ;
-;                                             ;             ;
-; Combinational ALUT usage for logic          ; 17          ;
-;     -- 7 input functions                    ; 0           ;
-;     -- 6 input functions                    ; 0           ;
-;     -- 5 input functions                    ; 8           ;
-;     -- 4 input functions                    ; 0           ;
-;     -- <=3 input functions                  ; 9           ;
-;                                             ;             ;
-; Dedicated logic registers                   ; 0           ;
-;                                             ;             ;
-; I/O pins                                    ; 30          ;
-;                                             ;             ;
-; Total DSP Blocks                            ; 1           ;
-;                                             ;             ;
-; Maximum fan-out node                        ; op[0]~input ;
-; Maximum fan-out                             ; 17          ;
-; Total fan-out                               ; 127         ;
-; Average fan-out                             ; 1.63        ;
-+---------------------------------------------+-------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 24        ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 48        ;
+;     -- 7 input functions                    ; 0         ;
+;     -- 6 input functions                    ; 0         ;
+;     -- 5 input functions                    ; 1         ;
+;     -- 4 input functions                    ; 0         ;
+;     -- <=3 input functions                  ; 47        ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 127       ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; ovf$latch ;
+; Maximum fan-out                             ; 2         ;
+; Total fan-out                               ; 259       ;
+; Average fan-out                             ; 0.86      ;
++---------------------------------------------+-----------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -209,21 +208,20 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
-; |alu                       ; 17 (17)             ; 0 (0)                     ; 0                 ; 1          ; 30   ; 0            ; |alu                ; alu         ; work         ;
+; |alu2                      ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 127  ; 0            ; |alu2               ; alu2        ; work         ;
 +----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+----------------------------------------------+
-; Analysis & Synthesis DSP Block Usage Summary ;
-+-------------------------------+--------------+
-; Statistic                     ; Number Used  ;
-+-------------------------------+--------------+
-; Independent 9x9               ; 1            ;
-; Total number of DSP blocks    ; 1            ;
-;                               ;              ;
-; Fixed Point Signed Multiplier ; 1            ;
-+-------------------------------+--------------+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; ovf$latch                                          ; Equal0              ; yes                    ;
+; Number of user-specified and inferred latches = 1  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -241,31 +239,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 8:1                ; 8 bits    ; 40 LEs        ; 16 LEs               ; 24 LEs                 ; No         ; |alu|Mux7                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 17                          ;
-;     arith             ; 9                           ;
-;         1 data inputs ; 1                           ;
-;         3 data inputs ; 8                           ;
-;     normal            ; 8                           ;
-;         5 data inputs ; 8                           ;
-; arriav_mac            ; 1                           ;
-; boundary_port         ; 30                          ;
+; arriav_lcell_comb     ; 49                          ;
+;     arith             ; 45                          ;
+;         0 data inputs ; 5                           ;
+;         2 data inputs ; 40                          ;
+;     normal            ; 4                           ;
+;         0 data inputs ; 1                           ;
+;         3 data inputs ; 2                           ;
+;         5 data inputs ; 1                           ;
+; boundary_port         ; 127                         ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.80                        ;
-; Average LUT depth     ; 2.20                        ;
+; Max LUT depth         ; 3.80                        ;
+; Average LUT depth     ; 3.49                        ;
 +-----------------------+-----------------------------+
 
 
@@ -284,7 +274,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Fri Mar 21 11:56:46 2025
+    Info: Processing started: Sat Mar 22 22:50:51 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off matrix-coprocessor-arm-cortex-a9 -c coprocessor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
@@ -292,23 +282,71 @@ Info (12021): Found 1 design units, including 1 entities, in source file src/mod
     Info (12023): Found entity 1: alu File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file src/modules/adder.v
     Info (12023): Found entity 1: adder File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/adder.v Line: 1
-Info (12127): Elaborating entity "alu" for the top level hierarchy
+Info (12021): Found 1 design units, including 1 entities, in source file src/modules/alu2.v
+    Info (12023): Found entity 1: alu2 File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 1
+Info (12127): Elaborating entity "alu2" for the top level hierarchy
+Info (10648): Verilog HDL Display System Task info at alu2.v(26): Foi 1 File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 26
+Warning (10270): Verilog HDL Case Statement warning at alu2.v(34): incomplete case statement has no default case item File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 34
+Warning (10240): Verilog HDL Always Construct warning at alu2.v(34): inferring latch(es) for variable "temp_m", which holds its previous value in one or more paths through the always construct File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 34
+Warning (10240): Verilog HDL Always Construct warning at alu2.v(34): inferring latch(es) for variable "ovf", which holds its previous value in one or more paths through the always construct File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 34
+Warning (10034): Output port "outr" at alu2.v(5) has no driver File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+Info (10041): Inferred latch for "ovf" at alu2.v(34) File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 34
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "outr[0]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[1]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[2]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[3]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[4]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[5]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[6]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[7]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[8]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[9]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[10]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[11]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[12]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[13]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[14]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[15]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[16]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[17]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[18]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[19]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[20]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[21]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[22]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[23]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[24]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[25]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[26]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[27]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[28]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[29]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[30]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[31]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[32]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[33]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[34]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[35]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[36]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[37]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[38]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
+    Warning (13410): Pin "outr[39]" is stuck at GND File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 5
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 3 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "s[0]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu.v Line: 3
-    Warning (15610): No output dependent on input pin "s[1]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu.v Line: 3
-    Warning (15610): No output dependent on input pin "s[2]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu.v Line: 3
-Info (21057): Implemented 48 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 22 input pins
-    Info (21059): Implemented 8 output pins
-    Info (21061): Implemented 17 logic cells
-    Info (21062): Implemented 1 DSP elements
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 4809 megabytes
-    Info: Processing ended: Fri Mar 21 11:57:11 2025
+    Warning (15610): No output dependent on input pin "s[0]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 4
+    Warning (15610): No output dependent on input pin "s[1]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 4
+    Warning (15610): No output dependent on input pin "s[2]" File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/alu2.v Line: 4
+Info (21057): Implemented 175 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 86 input pins
+    Info (21059): Implemented 41 output pins
+    Info (21061): Implemented 48 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 50 warnings
+    Info: Peak virtual memory: 4796 megabytes
+    Info: Processing ended: Sat Mar 22 22:51:16 2025
     Info: Elapsed time: 00:00:25
-    Info: Total CPU time (on all processors): 00:00:34
+    Info: Total CPU time (on all processors): 00:00:40
 
 

@@ -1,5 +1,5 @@
 module alu(input [2:0] op, //operation code
-			  input signed [7:0] r1, r2, //operands
+			  input signed [8:0] r1, r2, //operands
 			  input [2:0] s, //size of the matrix
 			  output reg signed [7:0] outr); //output result
 			  
@@ -14,8 +14,8 @@ module alu(input [2:0] op, //operation code
 		transM = 3'b101, //(transpose matrix)
 		oppM = 3'b110, //(opposite matrix)
 		rst = 3'b111; //reset
-	
-			
+
+		
 	always @(*) begin
 		a = r1;
 		b = r2;

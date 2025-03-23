@@ -1,0 +1,74 @@
+module alu2(input [2:0] op, //operation code
+			  input signed [199:0] r1, r2, //operands
+			  input [2:0] s, //size of the matrix
+			  output reg signed [199:0] outr, //output result
+			  output reg ovf); //lembrar de talvez mandar flag de overflow p cada bit
+
+	reg signed [199:0] a, b;
+	reg signed [224:0] temp_m;
+	
+	localparam [2:0]
+		addM = 3'b000, //(add matrices)
+		subM = 3'b001, //(subtract matrices)
+		multM = 3'b010, //(multiply matrices)
+		multMR = 3'b011, //(multiply by real)
+		detM = 3'b100, //(determinant of matrix)
+		transM = 3'b101, //(transpose matrix)
+		oppM = 3'b110, //(opposite matrix)
+		rst = 3'b111; //reset
+	
+		
+	always @(*) begin
+		a = r1;
+		b = r2;
+		//Atribuição de zero para os MSB após calcular o tamanho da matriz e quais bits não serão utilizados
+		//a exemplo a M[3x3] na qual se utiliza 72bits e do 199 ao 72 seriam zeros
+		case (op)
+			//soma
+			addM : begin
+				temp_m[8:0] = r1[7:0] + r2[7:0];
+				temp_m[17:9] = r1[15:8] + r2[15:8];
+				temp_m[26:18] = r1[23:16] + r2[23:16];
+				temp_m[35:27] = r1[31:24] + r2[31:24];
+				temp_m[44:36] = r1[39:32] + r2[39:32];
+				temp_m[53:45] = r1[47:40] + r2[47:40];
+				temp_m[62:54] = r1[55:48] + r2[55:48];
+				temp_m[71:63] = r1[63:56] + r2[63:56];
+				temp_m[80:72] = r1[71:64] + r2[71:64];
+				temp_m[89:81] = r1[79:72] + r2[79:72];
+				temp_m[98:90] = r1[87:80] + r2[87:80];
+				temp_m[107:99] = r1[95:88] + r2[95:88];
+				temp_m[116:108] = r1[103:96] + r2[103:96];
+				temp_m[125:117] = r1[111:104] + r2[111:104];
+				temp_m[134:126] = r1[119:112] + r2[119:112];
+				temp_m[143:135] = r1[127:120] + r2[127:120];
+				temp_m[152:144] = r1[135:128] + r2[135:128];
+				temp_m[161:153] = r1[143:136] + r2[143:136];
+				temp_m[170:162] = r1[151:144] + r2[151:144];
+				temp_m[179:171] = r1[159:152] + r2[159:152];
+				temp_m[188:180] = r1[167:160] + r2[167:160];
+				temp_m[197:189] = r1[175:168] + r2[175:168];
+				temp_m[206:198] = r1[183:176] + r2[183:176];
+				temp_m[215:207] = r1[191:184] + r2[191:184];
+				temp_m[224:216] = r1[199:192] + r2[199:192];
+				
+				ovf = temp_m[17] || temp_m[26] || temp_m[35] || temp_m[44] || temp_m[53] || 
+				temp_m[62] || temp_m[71] || temp_m[80] || temp_m[89] || temp_m[98] || 
+				temp_m[107] || temp_m[116] || temp_m[125] || temp_m[134] || temp_m[143] || 
+				temp_m[152] || temp_m[161] || temp_m[170] || temp_m[179] || temp_m[188] || 
+				temp_m[197] || temp_m[206] || temp_m[215] || temp_m[224];
+			end
+			//subtração
+			//subM : outr = a - b;
+			//multM : outr = a * b;
+			//multMR : outr = a * b;
+			//detM : outr = 8'b00000001;
+			//transM : outr = a * b;
+			//oppM : outr = a * b;
+			//rst : outr = 1'b1;
+			//default : outr = -1'b1;
+		endcase
+	end
+
+
+endmodule
