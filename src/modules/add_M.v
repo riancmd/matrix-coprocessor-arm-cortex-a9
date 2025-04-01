@@ -12,14 +12,14 @@ module add_M(input clk, //sinal de clock
 			ovf = 1'b0; 
 			temp_m = 45'b0;			
 		end
-		else begin //nõ
-			temp_m[44:36] = {m1[39], m1[39:32]} + {1'b0, m2[39:32]}; //primeira soma
-			temp_m[34:27] = {m1[31], m1[31:24]} + {1'b0, m2[31:24]}; //segunda soma
-			temp_m[25:18] = {m1[23], m1[23:16]} + {1'b0, m2[23:16]}; //terceira soma
-			temp_m[16:9]  = {m1[15], m1[15:8]}  + {1'b0, m2[15:8]};  //quarta soma
-			temp_m[7:0]   = {m1[7], m1[7:0]}   + {1'b0, m2[7:0]};   //quinta soma
+		else begin //nõ 
+			temp_m[44:36] = {m1[39], m1[39:32]} + {m2[39], m2[39:32]}; //primeira soma
+			temp_m[35:27] = {m1[31], m1[31:24]} + {m2[31], m2[31:24]}; //segunda soma
+			temp_m[26:18] = {m1[23], m1[23:16]} + {m2[23], m2[23:16]}; //terceira soma
+			temp_m[17:9]  = {m1[15], m1[15:8]}  + {m2[15], m2[15:8]};  //quarta soma
+			temp_m[8:0]   = {m1[7], m1[7:0]}   + {m2[7], m2[7:0]};   //quinta soma
 
-			ovf = (temp_m[44] != temp_m[43]) ||  // Overflow no elemento 0
+			ovf <= (temp_m[44] != temp_m[43]) ||  // Overflow no elemento 0
           (temp_m[35] != temp_m[34]) ||  // Overflow no elemento 1
           (temp_m[26] != temp_m[25]) ||  // Overflow no elemento 2
           (temp_m[17] != temp_m[16]) ||  // Overflow no elemento 3
