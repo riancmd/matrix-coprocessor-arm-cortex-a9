@@ -18,7 +18,7 @@ module trans_M(input clk, //sinal de clock
 			end 
 			
 			m_out = temp_m;
-			
+
 		end
 	
 endmodule
