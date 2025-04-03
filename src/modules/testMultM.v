@@ -61,7 +61,7 @@ module testMultM();
         
         #20;
         
-        // CASO 3: Valores próximos ao limite (sem overflow)
+        // CASO 3: Valores no limite (com overflow)
         // lin = [10,11,12,13,0,0,0,0,0,0]
         lin = 80'b00001010_00001011_00001100_00001101_00000000_00000000_00000000_00000000_00000000_00000000;
         // col = [10,0,11,0,0,0,0,0,0,0]
