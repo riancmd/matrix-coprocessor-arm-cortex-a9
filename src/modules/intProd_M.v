@@ -28,7 +28,7 @@ module intProd_M(input clk, //sinal de clock
 		if (temp_n[16] != temp_n[7]) begin
 			overflow = 1;
 		end
-
+        
 		//else if (temp_n[16:7] == 10'b1111111111) begin
 		//	overflow = 0;
 		//end
