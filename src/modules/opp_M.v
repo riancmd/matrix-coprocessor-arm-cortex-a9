@@ -1,11 +1,10 @@
-module opp_M(input clk, //sinal de clock
-				 input signed [39:0] m_1,//linha da matriz
+module opp_M(input signed [39:0] m_1,//linha da matriz
 				 input rst, //sinal de reset
 				 output reg signed [39:0] m_out); //linha resultante da matriz
 				
 	reg signed [39:0] temp_m;
 	
-	always@(posedge clk, posedge rst) begin
+	always@(*) begin
 		if (rst) begin
 			temp_m = 40'b0;
 		end

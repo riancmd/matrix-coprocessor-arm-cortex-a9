@@ -1,19 +1,18 @@
-module mult_MR(input clk, //sinal de clock
-				 input signed [39:0] m_1,//linha da matriz
-				 input signed [7:0] n,// número real a multiplicar a matriz
+module mult_MI(input signed [39:0] m_1,//linha da matriz
+				 input signed [7:0] n,// número inteiro a multiplicar a matriz
 				 input rst, //sinal de reset
 				 output reg signed [39:0] m_out, //linha resultante da matriz
 				 output reg signed ovf); //overflow
 				 
 	reg signed [74:0] temp_m; //array suficiente para conter bits de overflow (elementos de 8 bits, 5 no total)
 				 
-	always@(posedge clk, posedge rst) begin
+	always@(*) begin
 		if (rst) begin
 			ovf = 1'b0;
 			temp_m = 75'b0;
 		end
 		else begin
-			//multiplica cada número (5) pelo real
+			//multiplica cada número (5) pelo inteiro
 			temp_m[74:60] = m_1[39:32] * n;
 			temp_m[59:45] = m_1[31:24] * n;
 			temp_m[44:30] = m_1[23:16] * n;
