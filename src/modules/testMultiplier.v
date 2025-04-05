@@ -42,7 +42,18 @@ module testMultiplier();
         // CASO 1: Valores pequenos positivos (sem overflow)
         a = 8'b11110001; //-15
         b = 8'b00000010; //2
-        // n_out esperado: -30
+        // prod esperado: -30
         // Resultado esperado: 11100010
+
+        #20
+        a = 8'b10000000; //(-128)
+        b = 8'b11111111; //(-1)
+        //vai dar overflow pois o prod esperado seria 128, que excede
+
+        #20
+        a = 8'b00000100; //4
+        b = 8'b00000100; ///4
+        //não dá overflow, prod esperado: 00010000 (16)
+
     end
 endmodule
