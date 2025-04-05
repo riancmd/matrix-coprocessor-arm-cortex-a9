@@ -32,13 +32,13 @@ module multiplier(
         //se reset estiver off, multiplica
         else begin
             //algoritmo de multiplicação usando o shift
-            temp1 = (bit0 == 1) ? a << (bit0 == 1) : 16'b0; //se aquele bit não for nulo, faz um shift a esquerda
-            temp2 = (bit1 == 1) ? a << ((bit1 == 1) + 1) : 16'b0;
-            temp3 = (bit2 == 1) ? a << ((bit2 == 1) + 2) : 16'b0;
-            temp4 = (bit3 == 1) ? a << ((bit3 == 1) + 3) : 16'b0;
-            temp5 = (bit4 == 1) ? a << ((bit4 == 1) + 4) : 16'b0;
-            temp6 = (bit5 == 1) ? a << ((bit5 == 1) + 5) : 16'b0;
-            temp7 = (bit6 == 1) ? a << ((bit6 == 1) + 6) : 16'b0;
+            temp1 = (bit0 == 1) ? a : 16'b0; //se aquele bit não for nulo, faz um shift a esquerda
+            temp2 = (bit1 == 1) ? a << ((bit1 == 1)) : 16'b0;
+            temp3 = (bit2 == 1) ? a << ((bit2 == 1) + 1) : 16'b0;
+            temp4 = (bit3 == 1) ? a << ((bit3 == 1) + 2) : 16'b0;
+            temp5 = (bit4 == 1) ? a << ((bit4 == 1) + 3) : 16'b0;
+            temp6 = (bit5 == 1) ? a << ((bit5 == 1) + 4) : 16'b0;
+            temp7 = (bit6 == 1) ? a << ((bit6 == 1) + 5) : 16'b0;
 
             temp_prod = temp1 + temp2 + temp3 + temp4 + temp5 + temp6 + temp7; //como no algoritmo trad de multiplicação, soma todas as linhas
         end
