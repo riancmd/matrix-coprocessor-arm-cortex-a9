@@ -1,6 +1,6 @@
 Analysis & Synthesis report for coprocessor
-Tue Apr 01 09:26:53 2025
-Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
+Sat Apr  5 11:35:59 2025
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
 ---------------------
@@ -10,14 +10,32 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. Analysis & Synthesis IP Cores Summary
+ 11. State Machine - |interface|control_unit:control|state
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Inverted Register Statistics
+ 15. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 16. Source assignments for control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|altsyncram_0qd2:altsyncram1
+ 17. Parameter Settings for User Entity Instance: control_unit:control|memory:Memory|altsyncram:altsyncram_component
+ 18. altsyncram Parameter Settings by Entity Instance
+ 19. In-System Memory Content Editor Settings
+ 20. Post-Synthesis Netlist Statistics for Top Partition
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+ 23. Analysis & Synthesis Suppressed Messages
 
 
 
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2020  Intel Corporation. All rights reserved.
+Copyright (C) 2023  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -34,22 +52,27 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+---------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                              ;
-+-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Failed - Tue Apr 01 09:26:53 2025           ;
-; Quartus Prime Version       ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
-; Revision Name               ; coprocessor                                 ;
-; Top-level Entity Name       ; trans_M                                     ;
-; Family                      ; Cyclone V                                   ;
-; Logic utilization (in ALMs) ; N/A until Partition Merge                   ;
-; Total registers             ; N/A until Partition Merge                   ;
-; Total pins                  ; N/A until Partition Merge                   ;
-; Total virtual pins          ; N/A until Partition Merge                   ;
-; Total block memory bits     ; N/A until Partition Merge                   ;
-; Total PLLs                  ; N/A until Partition Merge                   ;
-; Total DLLs                  ; N/A until Partition Merge                   ;
-+-----------------------------+---------------------------------------------+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Sat Apr  5 11:35:59 2025          ;
+; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Revision Name                   ; coprocessor                                    ;
+; Top-level Entity Name           ; interface                                      ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 931                                            ;
+; Total pins                      ; 12                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 800                                            ;
+; Total DSP Blocks                ; 36                                             ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------+
@@ -58,7 +81,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; trans_M            ; coprocessor        ;
+; Top-level entity name                                                           ; interface          ; coprocessor        ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
@@ -144,15 +167,397 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 ; Processors                 ; Number      ;
 +----------------------------+-------------+
-; Number detected on machine ; 4           ;
-; Maximum allowed            ; 2           ;
+; Number detected on machine ; 20          ;
+; Maximum allowed            ; 14          ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 14          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processor 9            ;   0.0%      ;
+;     Processors 10-14       ;   0.0%      ;
 +----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                                                                                                      ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; File Name with User-Entered Path                                   ; Used in Netlist ; File Type                                    ; File Name with Absolute Path                                                                                                                                                                                            ; Library     ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+; det3.v                                                             ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det3.v                                                             ;             ;
+; src/modules/control_unit.v                                         ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v                                         ;             ;
+; src/modules/add_M.v                                                ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/add_M.v                                                ;             ;
+; interface.v                                                        ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/interface.v                                                        ;             ;
+; sub_M.v                                                            ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/sub_M.v                                                            ;             ;
+; memory.v                                                           ; yes             ; User Wizard-Generated File                   ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/memory.v                                                           ;             ;
+; opp_M.v                                                            ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/opp_M.v                                                            ;             ;
+; mult_MI.v                                                          ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/mult_MI.v                                                          ;             ;
+; det2.v                                                             ; yes             ; User Verilog HDL File                        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det2.v                                                             ;             ;
+; altsyncram.tdf                                                     ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/altsyncram.tdf                                                                                                                                                 ;             ;
+; stratix_ram_block.inc                                              ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/stratix_ram_block.inc                                                                                                                                          ;             ;
+; lpm_mux.inc                                                        ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/lpm_mux.inc                                                                                                                                                    ;             ;
+; lpm_decode.inc                                                     ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/lpm_decode.inc                                                                                                                                                 ;             ;
+; aglobal231.inc                                                     ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/aglobal231.inc                                                                                                                                                 ;             ;
+; a_rdenreg.inc                                                      ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/a_rdenreg.inc                                                                                                                                                  ;             ;
+; altrom.inc                                                         ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/altrom.inc                                                                                                                                                     ;             ;
+; altram.inc                                                         ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/altram.inc                                                                                                                                                     ;             ;
+; altdpram.inc                                                       ; yes             ; Megafunction                                 ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/altdpram.inc                                                                                                                                                   ;             ;
+; db/altsyncram_5ln1.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf                                             ;             ;
+; db/altsyncram_0qd2.tdf                                             ; yes             ; Auto-Generated Megafunction                  ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_0qd2.tdf                                             ;             ;
+; sld_mod_ram_rom.vhd                                                ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd                                                                                                                                            ;             ;
+; sld_jtag_endpoint_adapter.vhd                                      ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd                                                                                                                                  ;             ;
+; sld_jtag_endpoint_adapter_impl.sv                                  ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter_impl.sv                                                                                                                              ;             ;
+; sld_rom_sr.vhd                                                     ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_rom_sr.vhd                                                                                                                                                 ;             ;
+; sld_hub.vhd                                                        ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_hub.vhd                                                                                                                                                    ; altera_sld  ;
+; db/ip/slddb8654bc/alt_sld_fab.v                                    ; yes             ; Encrypted Auto-Found Verilog HDL File        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/alt_sld_fab.v                                    ; alt_sld_fab ;
+; db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab.v             ; yes             ; Encrypted Auto-Found Verilog HDL File        ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab.v             ; alt_sld_fab ;
+; db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; yes             ; Auto-Found SystemVerilog HDL File            ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_ident.sv      ; alt_sld_fab ;
+; db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_presplit.sv   ; alt_sld_fab ;
+; db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; yes             ; Encrypted Auto-Found VHDL File               ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd ; alt_sld_fab ;
+; db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; yes             ; Encrypted Auto-Found SystemVerilog HDL File  ; /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_splitter.sv   ; alt_sld_fab ;
+; sld_jtag_hub.vhd                                                   ; yes             ; Encrypted Megafunction                       ; /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_jtag_hub.vhd                                                                                                                                               ;             ;
++--------------------------------------------------------------------+-----------------+----------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimate of Logic utilization (ALMs needed) ; 1165      ;
+;                                             ;           ;
+; Combinational ALUT usage for logic          ; 1780      ;
+;     -- 7 input functions                    ; 12        ;
+;     -- 6 input functions                    ; 309       ;
+;     -- 5 input functions                    ; 280       ;
+;     -- 4 input functions                    ; 45        ;
+;     -- <=3 input functions                  ; 1134      ;
+;                                             ;           ;
+; Dedicated logic registers                   ; 931       ;
+;                                             ;           ;
+; I/O pins                                    ; 12        ;
+; Total MLAB memory bits                      ; 0         ;
+; Total block memory bits                     ; 800       ;
+;                                             ;           ;
+; Total DSP Blocks                            ; 36        ;
+;                                             ;           ;
+; Maximum fan-out node                        ; rst~input ;
+; Maximum fan-out                             ; 898       ;
+; Total fan-out                               ; 13022     ;
+; Average fan-out                             ; 4.37      ;
++---------------------------------------------+-----------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+; Compilation Hierarchy Node                                                                                                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                                                                                                                                                                                                                                   ; Entity Name                       ; Library Name ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+; |interface                                                                                                                              ; 1780 (2)            ; 931 (0)                   ; 800               ; 36         ; 12   ; 0            ; |interface                                                                                                                                                                                                                                                                                                                                            ; interface                         ; work         ;
+;    |control_unit:control|                                                                                                               ; 1680 (952)          ; 845 (622)                 ; 800               ; 36         ; 0    ; 0            ; |interface|control_unit:control                                                                                                                                                                                                                                                                                                                       ; control_unit                      ; work         ;
+;       |add_M:adderL1|                                                                                                                   ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|add_M:adderL1                                                                                                                                                                                                                                                                                                         ; add_M                             ; work         ;
+;       |add_M:adderL2|                                                                                                                   ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|add_M:adderL2                                                                                                                                                                                                                                                                                                         ; add_M                             ; work         ;
+;       |add_M:adderL3|                                                                                                                   ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|add_M:adderL3                                                                                                                                                                                                                                                                                                         ; add_M                             ; work         ;
+;       |add_M:adderL4|                                                                                                                   ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|add_M:adderL4                                                                                                                                                                                                                                                                                                         ; add_M                             ; work         ;
+;       |add_M:adderL5|                                                                                                                   ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|add_M:adderL5                                                                                                                                                                                                                                                                                                         ; add_M                             ; work         ;
+;       |det2:determinant2x2|                                                                                                             ; 0 (0)               ; 0 (0)                     ; 0                 ; 1          ; 0    ; 0            ; |interface|control_unit:control|det2:determinant2x2                                                                                                                                                                                                                                                                                                   ; det2                              ; work         ;
+;       |det3:determinant3x3|                                                                                                             ; 0 (0)               ; 0 (0)                     ; 0                 ; 10         ; 0    ; 0            ; |interface|control_unit:control|det3:determinant3x3                                                                                                                                                                                                                                                                                                   ; det3                              ; work         ;
+;       |memory:Memory|                                                                                                                   ; 41 (0)              ; 223 (0)                   ; 800               ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory                                                                                                                                                                                                                                                                                                         ; memory                            ; work         ;
+;          |altsyncram:altsyncram_component|                                                                                              ; 41 (0)              ; 223 (0)                   ; 800               ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component                                                                                                                                                                                                                                                                         ; altsyncram                        ; work         ;
+;             |altsyncram_5ln1:auto_generated|                                                                                            ; 41 (0)              ; 223 (0)                   ; 800               ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated                                                                                                                                                                                                                                          ; altsyncram_5ln1                   ; work         ;
+;                |altsyncram_0qd2:altsyncram1|                                                                                            ; 0 (0)               ; 0 (0)                     ; 800               ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|altsyncram_0qd2:altsyncram1                                                                                                                                                                                                              ; altsyncram_0qd2                   ; work         ;
+;                |sld_mod_ram_rom:mgl_prim2|                                                                                              ; 41 (24)             ; 223 (214)                 ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2                                                                                                                                                                                                                ; sld_mod_ram_rom                   ; work         ;
+;                   |sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|                                                                  ; 17 (17)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr                                                                                                                                                             ; sld_rom_sr                        ; work         ;
+;       |mult_MI:multi_MIL1|                                                                                                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 5          ; 0    ; 0            ; |interface|control_unit:control|mult_MI:multi_MIL1                                                                                                                                                                                                                                                                                                    ; mult_MI                           ; work         ;
+;       |mult_MI:multi_MIL2|                                                                                                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 5          ; 0    ; 0            ; |interface|control_unit:control|mult_MI:multi_MIL2                                                                                                                                                                                                                                                                                                    ; mult_MI                           ; work         ;
+;       |mult_MI:multi_MIL3|                                                                                                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 5          ; 0    ; 0            ; |interface|control_unit:control|mult_MI:multi_MIL3                                                                                                                                                                                                                                                                                                    ; mult_MI                           ; work         ;
+;       |mult_MI:multi_MIL4|                                                                                                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 5          ; 0    ; 0            ; |interface|control_unit:control|mult_MI:multi_MIL4                                                                                                                                                                                                                                                                                                    ; mult_MI                           ; work         ;
+;       |mult_MI:multi_MIL5|                                                                                                              ; 0 (0)               ; 0 (0)                     ; 0                 ; 5          ; 0    ; 0            ; |interface|control_unit:control|mult_MI:multi_MIL5                                                                                                                                                                                                                                                                                                    ; mult_MI                           ; work         ;
+;       |opp_M:oppL1|                                                                                                                     ; 49 (49)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|opp_M:oppL1                                                                                                                                                                                                                                                                                                           ; opp_M                             ; work         ;
+;       |opp_M:oppL2|                                                                                                                     ; 47 (47)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|opp_M:oppL2                                                                                                                                                                                                                                                                                                           ; opp_M                             ; work         ;
+;       |opp_M:oppL3|                                                                                                                     ; 46 (46)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|opp_M:oppL3                                                                                                                                                                                                                                                                                                           ; opp_M                             ; work         ;
+;       |opp_M:oppL4|                                                                                                                     ; 48 (48)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|opp_M:oppL4                                                                                                                                                                                                                                                                                                           ; opp_M                             ; work         ;
+;       |opp_M:oppL5|                                                                                                                     ; 47 (47)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|opp_M:oppL5                                                                                                                                                                                                                                                                                                           ; opp_M                             ; work         ;
+;       |sub_M:subtractorL1|                                                                                                              ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|sub_M:subtractorL1                                                                                                                                                                                                                                                                                                    ; sub_M                             ; work         ;
+;       |sub_M:subtractorL2|                                                                                                              ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|sub_M:subtractorL2                                                                                                                                                                                                                                                                                                    ; sub_M                             ; work         ;
+;       |sub_M:subtractorL3|                                                                                                              ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|sub_M:subtractorL3                                                                                                                                                                                                                                                                                                    ; sub_M                             ; work         ;
+;       |sub_M:subtractorL4|                                                                                                              ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|sub_M:subtractorL4                                                                                                                                                                                                                                                                                                    ; sub_M                             ; work         ;
+;       |sub_M:subtractorL5|                                                                                                              ; 45 (45)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|control_unit:control|sub_M:subtractorL5                                                                                                                                                                                                                                                                                                    ; sub_M                             ; work         ;
+;    |sld_hub:auto_hub|                                                                                                                   ; 98 (1)              ; 86 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub                                                                                                                                                                                                                                                                                                                           ; sld_hub                           ; altera_sld   ;
+;       |alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric| ; 97 (0)              ; 86 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric                                                                                                                                                                                           ; alt_sld_fab_with_jtag_input       ; altera_sld   ;
+;          |alt_sld_fab:instrumentation_fabric|                                                                                           ; 97 (0)              ; 86 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                                                                                        ; alt_sld_fab                       ; alt_sld_fab  ;
+;             |alt_sld_fab_alt_sld_fab:alt_sld_fab|                                                                                       ; 97 (1)              ; 86 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                                                                                                    ; alt_sld_fab_alt_sld_fab           ; alt_sld_fab  ;
+;                |alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|                                                                            ; 96 (0)              ; 81 (0)                    ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric                                                                        ; alt_sld_fab_alt_sld_fab_sldfabric ; alt_sld_fab  ;
+;                   |sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|                                                                        ; 96 (63)             ; 81 (53)                   ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub                           ; sld_jtag_hub                      ; work         ;
+;                      |sld_rom_sr:hub_info_reg|                                                                                          ; 14 (14)             ; 9 (9)                     ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_rom_sr:hub_info_reg   ; sld_rom_sr                        ; work         ;
+;                      |sld_shadow_jsm:shadow_jsm|                                                                                        ; 19 (19)             ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|sld_shadow_jsm:shadow_jsm ; sld_shadow_jsm                    ; altera_sld   ;
++-----------------------------------------------------------------------------------------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                                                           ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+------+------+
+; Name                                                                                                                                     ; Type ; Mode           ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+------+------+
+; control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|altsyncram_0qd2:altsyncram1|ALTSYNCRAM ; AUTO ; True Dual Port ; 4            ; 200          ; 4            ; 200          ; 800  ; None ;
++------------------------------------------------------------------------------------------------------------------------------------------+------+----------------+--------------+--------------+--------------+--------------+------+------+
+
+
++--------------------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary           ;
++------------------------------------------+-------------+
+; Statistic                                ; Number Used ;
++------------------------------------------+-------------+
+; Independent 9x9                          ; 31          ;
+; Independent 18x18 plus 36                ; 2           ;
+; Sum of two 18x18                         ; 3           ;
+; Total number of DSP blocks               ; 36          ;
+;                                          ;             ;
+; Fixed Point Unsigned Multiplier          ; 39          ;
+; Fixed Point Dedicated Output Adder Chain ; 1           ;
++------------------------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                                                                                                                                                                                                                                            ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                                                                                                                                                                                                                                                ; IP Include File ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric                                                                                 ;                 ;
+; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab                                             ;                 ;
+; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_presplit:presplit   ;                 ;
+; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric ;                 ;
+; Altera ; Signal Tap   ; N/A     ; N/A          ; Licensed     ; |interface|sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_splitter:splitter   ;                 ;
+; Altera ; RAM: 1-PORT  ; 23.1    ; N/A          ; N/A          ; |interface|control_unit:control|memory:Memory                                                                                                                                                                                                                                  ; memory.v        ;
++--------+--------------+---------+--------------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |interface|control_unit:control|state                                                                              ;
++---------------------+-----------+-----------------+---------------+---------------------+--------------+--------------+------------+
+; Name                ; state.CLN ; state.WRITEBACK ; state.EXECUTE ; state.FETCH3_DECODE ; state.FETCH2 ; state.FETCH1 ; state.IDLE ;
++---------------------+-----------+-----------------+---------------+---------------------+--------------+--------------+------------+
+; state.IDLE          ; 0         ; 0               ; 0             ; 0                   ; 0            ; 0            ; 0          ;
+; state.FETCH1        ; 0         ; 0               ; 0             ; 0                   ; 0            ; 1            ; 1          ;
+; state.FETCH2        ; 0         ; 0               ; 0             ; 0                   ; 1            ; 0            ; 1          ;
+; state.FETCH3_DECODE ; 0         ; 0               ; 0             ; 1                   ; 0            ; 0            ; 1          ;
+; state.EXECUTE       ; 0         ; 0               ; 1             ; 0                   ; 0            ; 0            ; 1          ;
+; state.WRITEBACK     ; 0         ; 1               ; 0             ; 0                   ; 0            ; 0            ; 1          ;
+; state.CLN           ; 1         ; 0               ; 0             ; 0                   ; 0            ; 0            ; 1          ;
++---------------------+-----------+-----------------+---------------+---------------------+--------------+--------------+------------+
+
+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; control_unit:control|state~5          ; Lost fanout        ;
+; control_unit:control|state~6          ; Lost fanout        ;
+; control_unit:control|state~7          ; Lost fanout        ;
+; Total Number of Removed Registers = 3 ;                    ;
++---------------------------------------+--------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 931   ;
+; Number of registers using Synchronous Clear  ; 215   ;
+; Number of registers using Synchronous Load   ; 404   ;
+; Number of registers using Asynchronous Clear ; 667   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 692   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Inverted Register Statistics                                                                                                                                                                                                                                                                                                              ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; Inverted Register                                                                                                                                                                                                                                                                                                               ; Fan out ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[1] ; 3       ;
+; sld_hub:auto_hub|alt_sld_fab_with_jtag_input:\instrumentation_fabric_with_node_gen:fabric_gen_new_way:with_jtag_input_gen:instrumentation_fabric|alt_sld_fab:instrumentation_fabric|alt_sld_fab_alt_sld_fab:alt_sld_fab|alt_sld_fab_alt_sld_fab_sldfabric:sldfabric|sld_jtag_hub:\jtag_hub_gen:real_sld_jtag_hub|jtag_ir_reg[2] ; 3       ;
+; Total number of inverted registers = 2                                                                                                                                                                                                                                                                                          ;         ;
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                                                                                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 200 bits  ; 400 LEs       ; 0 LEs                ; 400 LEs                ; Yes        ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_reg[132]                                              ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_data_shift_cntr_reg[0]                                     ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|ram_rom_addr_reg[1]                                                ;
+; 4:1                ; 5 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; Yes        ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|word_counter[0] ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |interface|control_unit:control|counter[0]                                                                                                                                                                ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |interface|control_unit:control|ready                                                                                                                                                                     ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |interface|control_unit:control|adrss[1]                                                                                                                                                                  ;
+; 26:1               ; 4 bits    ; 68 LEs        ; 52 LEs               ; 16 LEs                 ; Yes        ; |interface|control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr|WORD_SR[2]      ;
+; 12:1               ; 172 bits  ; 1376 LEs      ; 1376 LEs             ; 0 LEs                  ; No         ; |interface|control_unit:control|Mux163                                                                                                                                                                    ;
+; 11:1               ; 20 bits   ; 140 LEs       ; 120 LEs              ; 20 LEs                 ; No         ; |interface|control_unit:control|Mux191                                                                                                                                                                    ;
+; 16:1               ; 7 bits    ; 70 LEs        ; 70 LEs               ; 0 LEs                  ; No         ; |interface|control_unit:control|Mux197                                                                                                                                                                    ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|altsyncram_0qd2:altsyncram1 ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                                                     ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                                                      ;
++---------------------------------+--------------------+------+----------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: control_unit:control|memory:Memory|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                ;
++------------------------------------+----------------------+-----------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                             ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                          ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                        ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                        ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                      ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                             ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                             ;
+; WIDTH_A                            ; 200                  ; Signed Integer                                      ;
+; WIDTHAD_A                          ; 2                    ; Signed Integer                                      ;
+; NUMWORDS_A                         ; 4                    ; Signed Integer                                      ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                                             ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                             ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                             ;
+; WIDTH_B                            ; 1                    ; Untyped                                             ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                             ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                             ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                             ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                             ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                             ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                             ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                             ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                             ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                             ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                             ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                             ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                      ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                             ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                             ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                             ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                             ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                             ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                             ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                             ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                             ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                             ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                             ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                             ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                             ;
+; CBXI_PARAMETER                     ; altsyncram_5ln1      ; Untyped                                             ;
++------------------------------------+----------------------+-----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                               ;
++-------------------------------------------+--------------------------------------------------------------------+
+; Name                                      ; Value                                                              ;
++-------------------------------------------+--------------------------------------------------------------------+
+; Number of entity instances                ; 1                                                                  ;
+; Entity Instance                           ; control_unit:control|memory:Memory|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                                        ;
+;     -- WIDTH_A                            ; 200                                                                ;
+;     -- NUMWORDS_A                         ; 4                                                                  ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                                             ;
+;     -- WIDTH_B                            ; 1                                                                  ;
+;     -- NUMWORDS_B                         ; 1                                                                  ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                             ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                       ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                               ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                          ;
++-------------------------------------------+--------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; In-System Memory Content Editor Settings                                                                                                                      ;
++----------------+-------------+-------+-------+------------+---------------------------------------------------------------------------------------------------+
+; Instance Index ; Instance ID ; Width ; Depth ; Mode       ; Hierarchy Location                                                                                ;
++----------------+-------------+-------+-------+------------+---------------------------------------------------------------------------------------------------+
+; 0              ; memo        ; 200   ; 4     ; Read/Write ; control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated ;
++----------------+-------------+-------+-------+------------+---------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 845                         ;
+;     CLR               ; 9                           ;
+;     CLR SLD           ; 202                         ;
+;     ENA               ; 11                          ;
+;     ENA CLR           ; 214                         ;
+;     ENA CLR SCLR      ; 208                         ;
+;     ENA CLR SLD       ; 1                           ;
+;     ENA SLD           ; 200                         ;
+; arriav_lcell_comb     ; 1681                        ;
+;     arith             ; 433                         ;
+;         1 data inputs ; 208                         ;
+;         2 data inputs ; 225                         ;
+;     extend            ; 11                          ;
+;         7 data inputs ; 11                          ;
+;     normal            ; 1012                        ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 410                         ;
+;         3 data inputs ; 16                          ;
+;         4 data inputs ; 31                          ;
+;         5 data inputs ; 260                         ;
+;         6 data inputs ; 293                         ;
+;     shared            ; 225                         ;
+;         2 data inputs ; 225                         ;
+; arriav_mac            ; 36                          ;
+; boundary_port         ; 39                          ;
+; stratixv_ram_block    ; 200                         ;
+;                       ;                             ;
+; Max LUT depth         ; 8.00                        ;
+; Average LUT depth     ; 2.91                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
 
 
 +-------------------------------+
@@ -160,31 +565,182 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Tue Apr 01 09:26:21 2025
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Sat Apr  5 11:35:45 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off matrix-coprocessor-arm-cortex-a9 -c coprocessor
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/add_m.v
-    Info (12023): Found entity 1: add_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/add_M.v Line: 2
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/sub_m.v
-    Info (12023): Found entity 1: sub_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/sub_M.v Line: 2
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/intprod_m.v
-    Info (12023): Found entity 1: intProd_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/intProd_M.v Line: 3
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/mult_m.v
-    Info (12023): Found entity 1: mult_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/mult_M.v Line: 2
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/mult_mr.v
-    Info (12023): Found entity 1: mult_MR File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/mult_MR.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/opp_m.v
-    Info (12023): Found entity 1: opp_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/opp_M.v Line: 1
-Info (12021): Found 1 design units, including 1 entities, in source file src/modules/trans_m.v
-    Info (12023): Found entity 1: trans_M File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/trans_M.v Line: 1
-Error (10170): Verilog HDL syntax error at testAdd.v(3) near text: "reg";  expecting ";". Check for and fix any syntax errors that appear immediately before or at the specified keyword. The Intel FPGA Knowledge Database contains many articles with specific details on how to resolve this error. Visit the Knowledge Database at https://www.altera.com/support/support-resources/knowledge-base/search.html and search for this specific error message number. File: C:/Users/Rian S/Documents/ECOMP/TEC499 - Sistemas Digitais/matrix-coprocessor-arm-cortex-a9/src/modules/testAdd.v Line: 3
-Info (12021): Found 0 design units, including 0 entities, in source file src/modules/testadd.v
-Error: Quartus Prime Analysis & Synthesis was unsuccessful. 1 error, 1 warning
-    Error: Peak virtual memory: 4775 megabytes
-    Error: Processing ended: Tue Apr 01 09:26:53 2025
-    Error: Elapsed time: 00:00:32
-    Error: Total CPU time (on all processors): 00:00:37
+Info (20030): Parallel compilation is enabled and will use 14 of the 14 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file det3.v
+    Info (12023): Found entity 1: det3 File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det3.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file src/modules/control_unit.v
+    Info (12023): Found entity 1: control_unit File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file src/modules/add_M.v
+    Info (12023): Found entity 1: add_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/add_M.v Line: 2
+Warning (10463): Verilog HDL Declaration warning at interface.v(2): "interface" is SystemVerilog-2005 keyword File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/interface.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file interface.v
+    Info (12023): Found entity 1: interface File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/interface.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file sub_M.v
+    Info (12023): Found entity 1: sub_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/sub_M.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file memory.v
+    Info (12023): Found entity 1: memory File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/memory.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file opp_M.v
+    Info (12023): Found entity 1: opp_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/opp_M.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file trans_M.v
+    Info (12023): Found entity 1: trans_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/trans_M.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mult_MI.v
+    Info (12023): Found entity 1: mult_MI File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/mult_MI.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file mult_M.v
+    Info (12023): Found entity 1: mult_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/mult_M.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file intProd_M.v
+    Info (12023): Found entity 1: intProd_M File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/intProd_M.v Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file det2.v
+    Info (12023): Found entity 1: det2 File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det2.v Line: 1
+Info (12127): Elaborating entity "interface" for the top level hierarchy
+Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:control" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/interface.v Line: 23
+Warning (10858): Verilog HDL warning at control_unit.v(72): object multMA_slice1 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10858): Verilog HDL warning at control_unit.v(72): object multMA_slice2 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10858): Verilog HDL warning at control_unit.v(72): object multMA_slice3 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10858): Verilog HDL warning at control_unit.v(72): object multMA_slice4 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10858): Verilog HDL warning at control_unit.v(72): object multMA_slice5 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10858): Verilog HDL warning at control_unit.v(73): object multMA_slice6 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10858): Verilog HDL warning at control_unit.v(73): object multMA_slice7 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10858): Verilog HDL warning at control_unit.v(73): object multMA_slice8 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10858): Verilog HDL warning at control_unit.v(73): object multMA_slice9 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10858): Verilog HDL warning at control_unit.v(84): object multMA_ovf1 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10858): Verilog HDL warning at control_unit.v(84): object multMA_ovf2 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10858): Verilog HDL warning at control_unit.v(84): object multMA_ovf3 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10858): Verilog HDL warning at control_unit.v(84): object multMA_ovf4 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10858): Verilog HDL warning at control_unit.v(84): object multMA_ovf5 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10858): Verilog HDL warning at control_unit.v(85): object multMA_ovf6 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10858): Verilog HDL warning at control_unit.v(85): object multMA_ovf7 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10858): Verilog HDL warning at control_unit.v(85): object multMA_ovf8 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10858): Verilog HDL warning at control_unit.v(85): object multMA_ovf9 used but never assigned File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(108): object "m2_c0" assigned a value but never read File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 108
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(108): object "m2_c1" assigned a value but never read File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 108
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(108): object "m2_c2" assigned a value but never read File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 108
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(108): object "m2_c3" assigned a value but never read File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 108
+Warning (10036): Verilog HDL or VHDL warning at control_unit.v(108): object "m2_c4" assigned a value but never read File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 108
+Warning (10230): Verilog HDL assignment warning at control_unit.v(180): truncated value with size 18 to match size of target (8) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 180
+Warning (10230): Verilog HDL assignment warning at control_unit.v(195): truncated value with size 50 to match size of target (40) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 195
+Warning (10230): Verilog HDL assignment warning at control_unit.v(243): truncated value with size 8 to match size of target (2) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 243
+Warning (10230): Verilog HDL assignment warning at control_unit.v(244): truncated value with size 8 to match size of target (3) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 244
+Warning (10230): Verilog HDL assignment warning at control_unit.v(249): truncated value with size 32 to match size of target (1) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 249
+Warning (10230): Verilog HDL assignment warning at control_unit.v(263): truncated value with size 32 to match size of target (1) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 263
+Warning (10230): Verilog HDL assignment warning at control_unit.v(361): truncated value with size 32 to match size of target (2) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 361
+Warning (10030): Net "multMA_slice1" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice2" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice3[31..24]" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice3[15..8]" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice4" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice5" at control_unit.v(72) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 72
+Warning (10030): Net "multMA_slice6[31..24]" at control_unit.v(73) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10030): Net "multMA_slice6[15..8]" at control_unit.v(73) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10030): Net "multMA_slice7[31..16]" at control_unit.v(73) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10030): Net "multMA_slice8[31..16]" at control_unit.v(73) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10030): Net "multMA_slice9[31..24]" at control_unit.v(73) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 73
+Warning (10030): Net "multMA_ovf1" at control_unit.v(84) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10030): Net "multMA_ovf2" at control_unit.v(84) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10030): Net "multMA_ovf3" at control_unit.v(84) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10030): Net "multMA_ovf4" at control_unit.v(84) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10030): Net "multMA_ovf5" at control_unit.v(84) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 84
+Warning (10030): Net "multMA_ovf6" at control_unit.v(85) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10030): Net "multMA_ovf7" at control_unit.v(85) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10030): Net "multMA_ovf8" at control_unit.v(85) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Warning (10030): Net "multMA_ovf9" at control_unit.v(85) has no driver or initial value, using a default initial value '0' File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 85
+Info (12128): Elaborating entity "memory" for hierarchy "control_unit:control|memory:Memory" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 46
+Info (12128): Elaborating entity "altsyncram" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/memory.v Line: 86
+Info (12130): Elaborated megafunction instantiation "control_unit:control|memory:Memory|altsyncram:altsyncram_component" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/memory.v Line: 86
+Info (12133): Instantiated megafunction "control_unit:control|memory:Memory|altsyncram:altsyncram_component" with the following parameter: File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/memory.v Line: 86
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=YES,INSTANCE_NAME=memo"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "4"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "2"
+    Info (12134): Parameter "width_a" = "200"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_5ln1.tdf
+    Info (12023): Found entity 1: altsyncram_5ln1 File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_5ln1" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated" File: /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0qd2.tdf
+    Info (12023): Found entity 1: altsyncram_0qd2 File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_0qd2.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_0qd2" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|altsyncram_0qd2:altsyncram1" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf Line: 37
+Info (12128): Elaborating entity "sld_mod_ram_rom" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf Line: 38
+Info (12130): Elaborated megafunction instantiation "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf Line: 38
+Info (12133): Instantiated megafunction "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2" with the following parameter: File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/altsyncram_5ln1.tdf Line: 38
+    Info (12134): Parameter "CVALUE" = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    Info (12134): Parameter "IS_DATA_IN_RAM" = "1"
+    Info (12134): Parameter "IS_READABLE" = "1"
+    Info (12134): Parameter "NODE_NAME" = "1835363695"
+    Info (12134): Parameter "NUMWORDS" = "4"
+    Info (12134): Parameter "SHIFT_COUNT_BITS" = "8"
+    Info (12134): Parameter "WIDTH_WORD" = "200"
+    Info (12134): Parameter "WIDTHAD" = "2"
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter" File: /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 302
+Info (12128): Elaborating entity "sld_jtag_endpoint_adapter_impl" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_jtag_endpoint_adapter:jtag_signal_adapter|sld_jtag_endpoint_adapter_impl:sld_jtag_endpoint_adapter_impl_inst" File: /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_jtag_endpoint_adapter.vhd Line: 232
+Info (12128): Elaborating entity "sld_rom_sr" for hierarchy "control_unit:control|memory:Memory|altsyncram:altsyncram_component|altsyncram_5ln1:auto_generated|sld_mod_ram_rom:mgl_prim2|sld_rom_sr:\ram_rom_logic_gen:name_gen:info_rom_sr" File: /opt/intelFPGA_lite/23.1/quartus/libraries/megafunctions/sld_mod_ram_rom.vhd Line: 828
+Info (12128): Elaborating entity "add_M" for hierarchy "control_unit:control|add_M:adderL1" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 111
+Info (12128): Elaborating entity "sub_M" for hierarchy "control_unit:control|sub_M:subtractorL1" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 118
+Info (12128): Elaborating entity "mult_MI" for hierarchy "control_unit:control|mult_MI:multi_MIL1" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 137
+Warning (10240): Verilog HDL Always Construct warning at mult_MI.v(11): inferring latch(es) for variable "overflow", which holds its previous value in one or more paths through the always construct File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/mult_MI.v Line: 11
+Info (10041): Inferred latch for "overflow" at mult_MI.v(36) File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/mult_MI.v Line: 36
+Info (12128): Elaborating entity "det2" for hierarchy "control_unit:control|det2:determinant2x2" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 144
+Info (12128): Elaborating entity "det3" for hierarchy "control_unit:control|det3:determinant3x3" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 147
+Warning (10240): Verilog HDL Always Construct warning at det3.v(12): inferring latch(es) for variable "diag_1", which holds its previous value in one or more paths through the always construct File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det3.v Line: 12
+Warning (10240): Verilog HDL Always Construct warning at det3.v(12): inferring latch(es) for variable "diag_2", which holds its previous value in one or more paths through the always construct File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det3.v Line: 12
+Warning (10240): Verilog HDL Always Construct warning at det3.v(12): inferring latch(es) for variable "temp_det", which holds its previous value in one or more paths through the always construct File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/det3.v Line: 12
+Info (12128): Elaborating entity "opp_M" for hierarchy "control_unit:control|opp_M:oppL1" File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/src/modules/control_unit.v Line: 151
+Info (11170): Starting IP generation for the debug fabric: alt_sld_fab.
+Info (11172): 2025.04.05.11:35:51 Progress: Loading slddb8654bc/alt_sld_fab_wrapper_hw.tcl
+Info (11172): Alt_sld_fab.alt_sld_fab: SLD fabric agents which did not specify prefer_host were connected to JTAG
+Info (11172): Alt_sld_fab: Generating alt_sld_fab "alt_sld_fab" for QUARTUS_SYNTH
+Info (11172): Alt_sld_fab: "alt_sld_fab" instantiated alt_sld_fab "alt_sld_fab"
+Info (11172): Presplit: "alt_sld_fab" instantiated altera_super_splitter "presplit"
+Info (11172): Splitter: "alt_sld_fab" instantiated altera_sld_splitter "splitter"
+Info (11172): Sldfabric: "alt_sld_fab" instantiated altera_sld_jtag_hub "sldfabric"
+Info (11172): Ident: "alt_sld_fab" instantiated altera_connection_identification_hub "ident"
+Info (11172): Alt_sld_fab: Done "alt_sld_fab" with 6 modules, 6 files
+Info (11171): Finished IP generation for the debug fabric: alt_sld_fab.
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slddb8654bc/alt_sld_fab.v
+    Info (12023): Found entity 1: alt_sld_fab File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab.v
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_ident.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_ident File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_ident.sv Line: 33
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_presplit.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_presplit File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_presplit.sv Line: 3
+Info (12021): Found 2 design units, including 1 entities, in source file db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd
+    Info (12022): Found design unit 1: alt_sld_fab_alt_sld_fab_sldfabric-rtl File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 102
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_sldfabric File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_sldfabric.vhd Line: 11
+Info (12021): Found 1 design units, including 1 entities, in source file db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_splitter.sv
+    Info (12023): Found entity 1: alt_sld_fab_alt_sld_fab_splitter File: /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/db/ip/slddb8654bc/submodules/alt_sld_fab_alt_sld_fab_splitter.sv Line: 3
+Info (286031): Timing-Driven Synthesis is running on partition "Top"
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/output_files/coprocessor.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 9 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 2469 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 7 input pins
+    Info (21059): Implemented 9 output pins
+    Info (21061): Implemented 2216 logic cells
+    Info (21064): Implemented 200 RAM segments
+    Info (21062): Implemented 36 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 56 warnings
+    Info: Peak virtual memory: 628 megabytes
+    Info: Processing ended: Sat Apr  5 11:35:59 2025
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:32
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/aluno/Documentos/TEC499/G02/PBL 5.04/ULTIMOS TESTES SEXT matrix-coprocessor-arm-cortex-a9-pc-victor/matrix-coprocessor-arm-cortex-a9-pc-victor/output_files/coprocessor.map.smsg.
 
 

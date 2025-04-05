@@ -1,6 +1,0 @@
-module mult_MR(input clk, //sinal de clock
-				 input signed [39:0] lin, col,//linha da matriz
-				 input signed [7:0] n,// número real a multiplicar a matriz
-				 input rst, //sinal de reset
-				 output reg signed [7:0] n_out, //produto interno
-				 output reg signed ovf); //overflow

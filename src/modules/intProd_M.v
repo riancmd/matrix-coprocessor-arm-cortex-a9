@@ -1,7 +1,6 @@
 //Módulo que calcula produto interno de linha de A e coluna de B
 //Esse módulo é instanciado no módulo mult_M
-module intProd_M(input clk, //sinal de clock
-				 input signed [39:0] lin, col, //linha da matriz 1, coluna da matriz 2
+module intProd_M(input signed [39:0] lin, col, //linha da matriz 1, coluna da matriz 2
 				 input rst, //sinal de reset
 				 output reg signed [7:0] n_out, //produto interno
 				 output reg signed ovf); //overflow
@@ -10,7 +9,7 @@ module intProd_M(input clk, //sinal de clock
 	reg [16:0] temp_n; //valor temporário do número para conter overflow
 	reg overflow;
 	
-	always@(posedge clk, posedge rst) begin
+	always@(*) begin
 		overflow = 0;
 
 		if(rst) begin //se houver sinal de reset
@@ -28,7 +27,7 @@ module intProd_M(input clk, //sinal de clock
 		if (temp_n[16] != temp_n[7]) begin
 			overflow = 1;
 		end
-        
+
 		//else if (temp_n[16:7] == 10'b1111111111) begin
 		//	overflow = 0;
 		//end

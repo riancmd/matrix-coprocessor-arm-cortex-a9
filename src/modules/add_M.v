@@ -1,13 +1,12 @@
 //Este módulo soma duas linhas, considerando cada uma com 40 bits
-module add_M(input clk, //sinal de clock
-				 input signed [39:0] m1, m2, //linhas da matriz 1 e 2
+module add_M(input signed [39:0] m1, m2, //linhas da matriz 1 e 2
 				 input rst, //sinal de reset
 				 output reg signed [39:0] m_out, //linha final
 				 output reg signed ovf); //overflow
 				 
 	reg signed [44:0] temp_m; //registrador com valor temporário do cálculo
 	
-	always@(posedge clk or posedge rst) begin
+	always@(*) begin
 		if(rst) begin //se houver sinal de reset
 			ovf = 1'b0; 
 			temp_m = 45'b0;			

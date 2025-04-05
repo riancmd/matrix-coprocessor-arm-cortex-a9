@@ -1,0 +1,27 @@
+<internal_error>
+<sub_system>ERR</sub_system>
+<callstack>
+	0x74c79076d2f6: ccl_err + 0x82f6 (_ZN15ERR_STACKWALKER15get_stack_traceEPPKviiPv + 0x146)
+	0x74c7907703c8: ccl_err + 0xb3c8 (_Z14err_terminatorv + 0x5a)
+	0x74c7a05a2b86: jtag_client + 0x38b86 (_ZN10__cxxabiv111__terminateEPFvvE + 0x6)
+	0x74c7a05a2bf1: jtag_client + 0x38bf1
+	0x74c7a05a28a4: jtag_client + 0x388a4 (__gxx_personality_v0 + 0x2d4)
+	0x74c7903708b8: gcc_s.so.1 + 0x108b8 (_Unwind_ForcedUnwind_Phase2 + 0x78)
+	0x74c790370e8e: gcc_s.so.1 + 0x10e8e (_Unwind_ForcedUnwind + 0x12e)
+	0x74c7810a57a4: c.so.6 + 0xa57a4
+	0x74c7810985c6: c.so.6 + 0x985c6
+	0x74c781116710: c.so.6 + 0x116710 (__close + 0x30)
+	0x74c785b22d9e: Qt5Core.so.5 + 0x322d9e (_ZN27QEventDispatcherUNIXPrivateD1Ev + 0xde)
+	0x74c785b22e99: Qt5Core.so.5 + 0x322e99 (_ZN27QEventDispatcherUNIXPrivateD0Ev + 0x9)
+	0x74c785b01aab: Qt5Core.so.5 + 0x301aab (_ZN7QObjectD1Ev + 0x37b)
+	0x74c785b22a49: Qt5Core.so.5 + 0x322a49 (_ZN20QEventDispatcherUNIXD0Ev + 0x9)
+	0x74c7858d242f: Qt5Core.so.5 + 0xd242f (_ZN12_GLOBAL__N_122terminate_on_exceptionIZN14QThreadPrivate6finishEPvEUlvE_EEvOT_ + 0xbf)
+	0x74c7858d2fa8: Qt5Core.so.5 + 0xd2fa8 (_ZN14QThreadPrivate5startEPv + 0x128)
+	0x74c78109caa4: c.so.6 + 0x9caa4
+	0x74c781129c3c: c.so.6 + 0x129c3c
+</callstack>
+<error>*** Fatal Error: Unhandled Exception</error>
+<date>Wed Apr  2 10:25:26 2025
+</date>
+<version>Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition</version>
+</internal_error>
