@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 
-module testMultM();
+module testMultiplier();
+    reg clk;
     reg rst;
     reg signed [7:0] a, b;  // 80 bits = 10 números de 8 bits
     wire signed [7:0] prod;    // 32 bits = 4 números de 8 bits

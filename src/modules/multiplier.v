@@ -3,19 +3,13 @@ module multiplier(
     input rst, //sinal de reset
     output reg signed [7:0] prod, //produto da multiplicação
     output reg ovf
-)
+);
 
-    reg [15:0] temp_prod; //registrador que guarda o produto no caso de overflow
+    reg signed [15:0] temp_prod; //registrador que guarda o produto no caso de overflow
     reg bit0, bit1, bit2, bit3, bit4, bit5, bit6, bit7;
-    reg [15:0] temp1, temp2, temp3, temp4, temp5, temp6, temp7;
+    reg signed [15:0] temp1, temp2, temp3, temp4, temp5, temp6, temp7;
 
     always @(*) begin
-        //caso de reset
-        if (rst) begin
-            temp_prod = 16'b0;
-            ovf = 0;
-        end
-
         //atribui todos os bits para multiplicação
         bit7 = b[7];
         bit6 = b[6];
@@ -27,7 +21,13 @@ module multiplier(
         bit0 = b[0];
 
         //atribui 0 para todos os bits temporários
-        {temp1, temp2, temp3, temp4, temp5, temp6, temp7} = 16'b0;
+        {temp1, temp2, temp3, temp4, temp5, temp6, temp7} = 112'b0;
+
+        //caso de reset
+        if (rst) begin
+            temp_prod = 16'b0;
+            ovf = 0;
+        end
 
         //se reset estiver off, multiplica
         else begin
