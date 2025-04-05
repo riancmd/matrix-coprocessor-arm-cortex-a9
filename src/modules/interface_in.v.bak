@@ -1,0 +1,30 @@
+module interface_in(
+	input clk_b, clk, rst, start
+);
+	
+	//Instanciamento da ferramenta
+	reg [15:0] lw;
+	wire ready;
+	reg [7:0] adrss;
+	memory memoria(adrss, clk, result, ready, lw);
+	
+	reg op = 3'b000;
+	reg size = 2'b00;
+	reg operand1 = lw[7:0];
+	reg operand2 = lw[15:8];
+	reg result;
+	wire fetch_busy;
+	
+	coprocessor control_unit(clk_b, rst, start, op, size, operand1, operand2, result, ready);
+	
+	always @(*) begin
+		if(start) begin
+			adrss <= 8'b0;
+		end
+		
+		if(ready) begin
+			adrss <= 8'b1;
+		end
+	end
+	
+endmodule

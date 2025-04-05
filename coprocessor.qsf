@@ -39,23 +39,41 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY trans_M
+set_global_assignment -name TOP_LEVEL_ENTITY interface
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 20.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "18:44:17  MARCH 16, 2025"
-set_global_assignment -name LAST_QUARTUS_VERSION "20.1.0 Lite Edition"
+set_global_assignment -name LAST_QUARTUS_VERSION "23.1std.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
-set_global_assignment -name VERILOG_FILE src/modules/add_M.v
-set_global_assignment -name VERILOG_FILE src/modules/sub_M.v
-set_global_assignment -name VERILOG_FILE src/modules/intProd_M.v
-set_global_assignment -name VERILOG_FILE src/modules/mult_M.v
-set_global_assignment -name VERILOG_FILE src/modules/mult_MR.v
-set_global_assignment -name VERILOG_FILE src/modules/opp_M.v
-set_global_assignment -name VERILOG_FILE src/modules/trans_M.v
+set_location_assignment PIN_AF14 -to clk
+set_location_assignment PIN_AA15 -to rst
+set_location_assignment PIN_AB12 -to start
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_location_assignment PIN_AA14 -to clk_button
+set_location_assignment PIN_V16 -to overflow
+set_location_assignment PIN_W16 -to ready
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE src/modules/testAdd.v
+set_location_assignment PIN_V17 -to state[0]
+set_location_assignment PIN_V18 -to state[1]
+set_location_assignment PIN_W17 -to state[2]
+set_location_assignment PIN_Y19 -to op_code_o[0]
+set_location_assignment PIN_W20 -to op_code_o[1]
+set_location_assignment PIN_W21 -to op_code_o[2]
+set_global_assignment -name VERILOG_FILE det3.v
+set_global_assignment -name VERILOG_FILE src/modules/control_unit.v
+set_global_assignment -name VERILOG_FILE src/modules/add_M.v
+set_global_assignment -name VERILOG_FILE interface.v
+set_global_assignment -name VERILOG_FILE sub_M.v
+set_global_assignment -name QIP_FILE memory.qip
+set_global_assignment -name VERILOG_FILE opp_M.v
+set_global_assignment -name VERILOG_FILE trans_M.v
+set_global_assignment -name VERILOG_FILE mult_MI.v
+set_global_assignment -name VERILOG_FILE mult_M.v
+set_global_assignment -name VERILOG_FILE intProd_M.v
+set_global_assignment -name VERILOG_FILE det2.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
