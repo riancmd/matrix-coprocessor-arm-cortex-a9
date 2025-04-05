@@ -42,9 +42,9 @@ module multiplier(
 
             temp_prod = temp1 + temp2 + temp3 + temp4 + temp5 + temp6 + temp7; //como no algoritmo trad de multiplicação, soma todas as linhas
         end
-
+        
+        ovf = (temp_prod > 127 || prod < -128);
         prod = temp_prod[7:0];
-        ovf = (prod > 127 || prod < -128);
 
     end
 
