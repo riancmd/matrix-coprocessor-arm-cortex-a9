@@ -1,0 +1,20 @@
+Fitter Status : Successful - Mon Apr  7 18:25:05 2025
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : matrix-coprocessor-arm-cortex-a9
+Top-level Entity Name : interface
+Family : Cyclone V
+Device : 5CSEMA5F31C6
+Timing Models : Final
+Logic utilization (in ALMs) : 9,878 / 32,070 ( 31 % )
+Total registers : 1009
+Total pins : 12 / 457 ( 3 % )
+Total virtual pins : 0
+Total block memory bits : 800 / 4,065,280 ( < 1 % )
+Total RAM Blocks : 10 / 397 ( 3 % )
+Total DSP Blocks : 36 / 87 ( 41 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0 / 6 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )

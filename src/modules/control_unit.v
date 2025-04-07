@@ -71,15 +71,15 @@ module control_unit(
 	//Fios necessários para concatenacao
 	wire [31:0] multMA_slice1, multMA_slice2, multMA_slice3, multMA_slice4, multMA_slice5,
 	multMA_slice6, multMA_slice7, multMA_slice8, multMA_slice9;
-	//assign multMA_slice1 = multMA_result1;
-	//assign multMA_slice2 = multMA_result2;
-	//assign multMA_slice3 = multMA_result3;
-	//assign multMA_slice4 = multMA_result4;
-	//assign multMA_slice5 = multMA_result5;
-	//assign multMA_slice6 = multMA_result6;
-	//assign multMA_slice7 = multMA_result7;
-	//assign multMA_slice8 = multMA_result8;
-	//assign multMA_slice9 = multMA_result9;
+	assign multMA_slice1 = multMA_result1;
+	assign multMA_slice2 = multMA_result2;
+	assign multMA_slice3 = multMA_result3;
+	assign multMA_slice4 = multMA_result4;
+	assign multMA_slice5 = multMA_result5;
+	assign multMA_slice6 = multMA_result6;
+	assign multMA_slice7 = multMA_result7;
+	assign multMA_slice8 = multMA_result8;
+	assign multMA_slice9 = multMA_result9;
 	
 	wire multMA_ovf1, multMA_ovf2, multMA_ovf3, multMA_ovf4, multMA_ovf5,
 	multMA_ovf6, multMA_ovf7, multMA_ovf8, multMA_ovf9; //Overflow da multiplicação entre matrizes
@@ -95,6 +95,14 @@ module control_unit(
 	//Determinante 3x3
 	wire [7:0] det3x3_result; //Resultado da determinante 3x3
 	wire det3x3_ovf; //Overflow da determinante 3x3
+	
+	//Determinante 4x4
+	wire [7:0] det4x4_result; //Resultado da determinante 4x4
+	wire det4x4_ovf; //Overflow da determinante 4x4
+	
+	//Determinante 5x5
+	wire [7:0] det5x5_result; //Resultado da determinante 5x5
+	wire det5x5_ovf; //Overflow da determinante 5x5
 	
 	//Transposta
 	reg [39:0] trans_result1, trans_result2, trans_result3, trans_result4, trans_result5; //Resultados da Transposta
@@ -122,15 +130,15 @@ module control_unit(
 	sub_M subtractorL5(matrix1_reg[39:0], matrix2_reg[39:0], rst, sub_result5, sub_ovf5);
 	
 	//Módulos de multiplicação entre matrizes para cada 2 linhas e 2 colunas					//Linha(h) x Coluna(c)
-	//mult_M multi_MAL1(matrix1_reg[199:120], {m2_c0,m2_c1}, rst, multMA_result1, multMA_ovf1); //l1, l2 x c1, c2
-	//mult_M multi_MAL2(matrix1_reg[199:120], {m2_c2,m2_c3}, rst, multMA_result2, multMA_ovf2); //l1, l2 x c3 c4
-	//mult_M multi_MAL3(matrix1_reg[199:120], {m2_c4, 40'b0}, rst, multMA_result3, multMA_ovf3); //l1, l2 x c5
-	//mult_M multi_MAL4(matrix1_reg[119:40], {m2_c0,m2_c1}, rst, multMA_result4, multMA_ovf4); //l3, l4 x c1, c2
-	//mult_M multi_MAL5(matrix1_reg[119:40], {m2_c2,m2_c3}, rst, multMA_result5, multMA_ovf5); //l3, l4 x c3, c4
-	//mult_M multi_MAL6(matrix1_reg[119:40], {m2_c4, 40'b0}, rst, multMA_result6, multMA_ovf6); //l3, l4 x c5
-	//mult_M multi_MAL7({matrix1_reg[39:0], 40'b0}, {m2_c0,m2_c1}, rst, multMA_result7, multMA_ovf7); //l5 x c1, c2
-	//mult_M multi_MAL8({matrix1_reg[39:0], 40'b0}, {m2_c2,m2_c3}, rst, multMA_result8, multMA_ovf8); //l5 x c3, c4
-	//mult_M multi_MAL9({matrix1_reg[39:0], 40'b0}, {m2_c4, 40'b0}, rst, multMA_result9, multMA_ovf9); //l5 x c5
+	mult_M multi_MAL1(matrix1_reg[199:120], {m2_c0,m2_c1}, rst, multMA_result1, multMA_ovf1); //l1, l2 x c1, c2
+	mult_M multi_MAL2(matrix1_reg[199:120], {m2_c2,m2_c3}, rst, multMA_result2, multMA_ovf2); //l1, l2 x c3 c4
+	mult_M multi_MAL3(matrix1_reg[199:120], {m2_c4, 40'b0}, rst, multMA_result3, multMA_ovf3); //l1, l2 x c5
+	mult_M multi_MAL4(matrix1_reg[119:40], {m2_c0,m2_c1}, rst, multMA_result4, multMA_ovf4); //l3, l4 x c1, c2
+	mult_M multi_MAL5(matrix1_reg[119:40], {m2_c2,m2_c3}, rst, multMA_result5, multMA_ovf5); //l3, l4 x c3, c4
+	mult_M multi_MAL6(matrix1_reg[119:40], {m2_c4, 40'b0}, rst, multMA_result6, multMA_ovf6); //l3, l4 x c5
+	mult_M multi_MAL7({matrix1_reg[39:0], 40'b0}, {m2_c0,m2_c1}, rst, multMA_result7, multMA_ovf7); //l5 x c1, c2
+	mult_M multi_MAL8({matrix1_reg[39:0], 40'b0}, {m2_c2,m2_c3}, rst, multMA_result8, multMA_ovf8); //l5 x c3, c4
+	mult_M multi_MAL9({matrix1_reg[39:0], 40'b0}, {m2_c4, 40'b0}, rst, multMA_result9, multMA_ovf9); //l5 x c5
 	
 	
 	//Módulos de multiplicação por inteiro para cada linha
@@ -146,6 +154,11 @@ module control_unit(
 	//Modulo de determinante 3x3
 	det3 determinant3x3({matrix1_reg[199:176], matrix1_reg[159:136], matrix1_reg[119:96]}, rst, det3x3_result, det3x3_ovf);
 	
+	//Modulo de determinante 4x4
+	det4 determinant4x4({matrix1_reg[199:168], matrix1_reg[159:128], matrix1_reg[119:88], matrix1_reg[79:48]}, rst, det4x4_result, det4x4_ovf);
+	
+	//Modulo de determinante 5x5
+	det5 determinant5x5({matrix1_reg[199:160], matrix1_reg[159:120], matrix1_reg[119:80], matrix1_reg[79:40], matrix1_reg[39:0]}, rst, det5x5_result, det5x5_ovf);
 	
 	//Modulos de oposta para cada linha
 	opp_M oppL1(matrix1_reg[199:160], rst, opp_result1, opp_ovf1);
@@ -314,19 +327,25 @@ module control_unit(
 						end
 						
 						DETERMINANTE: begin
+							//Matriz 2x2
 							if (msize_reg == 0) begin
 								result_reg = det2x2_result;
 								overflow = det2x2_ovf;
 							end
+							//Matriz 3x3
 							else if (msize_reg == 1) begin
 								result_reg = det3x3_result;
 								overflow = det3x3_ovf;
 							end
+							//Matriz 4x4
 							else if (msize_reg == 2) begin
-								result_reg = 2;
+								result_reg = det4x4_result;
+								overflow = det4x4_ovf;
 							end
+							//Matriz 5x5
 							else begin
-								result_reg = 3;
+								result_reg = det5x5_result;
+								overflow = det5x5_ovf;
 							end
 						end
 						

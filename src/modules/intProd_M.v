@@ -5,42 +5,40 @@ module intProd_M(input signed [39:0] lin, col, //linha da matriz 1, coluna da ma
 				 output reg signed [7:0] n_out, //produto interno
 				 output reg signed ovf); //overflow
 	
-	//Tem que aumentar o temp_n para 17bits
-	reg [16:0] temp_n; //valor temporário do número para conter overflow
-	reg overflow;
+	//Tem que aumentar o temp_n para 11bits devido a soma de 5 números de 8 bits
+	reg signed [10:0] temp_n; //valor temporário do número para conter overflow
+	
+	//Instâncias do módulo multiplicador para poupar uso de DSP nas multiplicações
+	multiplier multM5(lin[7:0], col[7:0], rst, prod5, ovf5);
+	multiplier multM4(lin[15:8], col[15:8], rst, prod4, ovf4);
+	multiplier multM3(lin[23:16], col[23:16], rst, prod3, ovf3);
+	multiplier multM2(lin[31:24], col[31:24], rst, prod2, ovf2);
+	multiplier multM1(lin[39:32], col[39:32], rst, prod1, ovf1);
+	
+	//Fios das sáidas dos módulos
+	wire [7:0] prod1, prod2, prod3, prod4, prod5;
+	wire ovf1, ovf2, ovf3, ovf4, ovf5;
+	wire ovfP;
+	assign ovfP = (ovf1 || ovf2 || ovf3 || ovf4 || ovf5); 
 	
 	always@(*) begin
-		overflow = 0;
-
 		if(rst) begin //se houver sinal de reset
-			temp_n = 8'b0;			
+			temp_n = 0;		
+			ovf = 0;
 		end
 		
 		else begin //calcula produto interno
-			//temp_n recebe valor temporário do prod int, calculando linha(i) * coluna(j) do elemento a(i,j)
-			temp_n = lin[7:0] * col[7:0] + lin[15:8] * col[15:8] + lin[23:16] * col[23:16] + lin[31:24] * col[31:24] + lin[39:32] * col[39:32];
-			//overflow = (temp_n > 16'b0000000001111111 || temp_n < (-16'b0000000010000000)) ? 1'b1 : 1'b0; //se houve overflow, manda sinal
+			//temp_n recebe valor temporário do prod int
+			temp_n = {{3{prod1[7]}}, prod1} +
+						{{3{prod2[7]}}, prod2} +
+						{{3{prod3[7]}}, prod3} +
+						{{3{prod4[7]}}, prod4} +
+						{{3{prod5[7]}}, prod5};
+			
+			//Se houve overflow (maior que 127, menor que -128 ou algum ovf parcial), manda sinal
+			ovf = (temp_n > 127 || temp_n <  -128 || ovfP);
 		end
 
-		//verifica todos os casos de overflow
-		
-		if (temp_n[16] != temp_n[7]) begin
-			overflow = 1;
-		end
-
-		//else if (temp_n[16:7] == 10'b1111111111) begin
-		//	overflow = 0;
-		//end
-
-		//else if (temp_n[16:7] == 10'b0000000000) begin
-		//	overflow = 0;
-		//end
-
-		else if ((temp_n[16] == temp_n[7]) && (temp_n[15:8] != 8'b11111111 && temp_n[15:8] != 8'b00000000)) begin
-			overflow = 1;
-		end
-
-		ovf = overflow;
 		n_out = temp_n[7:0]; //Apenas envia bits menos significativos (8bits), independente de overflow
 		
 	end
