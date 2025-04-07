@@ -1,0 +1,9 @@
+module det5(
+	 input signed [199:0] matrix, //uma matriz 4x4 com 8 bits cada elemento
+    input rst,
+    output reg signed [7:0] det,
+    output reg ovf
+);
+
+
+endmodule

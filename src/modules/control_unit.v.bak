@@ -146,8 +146,6 @@ module control_unit(
 	//Modulo de determinante 3x3
 	det3 determinant3x3({matrix1_reg[199:176], matrix1_reg[159:136], matrix1_reg[119:96]}, rst, det3x3_result, det3x3_ovf);
 	
-
-	
 	
 	//Modulos de oposta para cada linha
 	opp_M oppL1(matrix1_reg[199:160], rst, opp_result1, opp_ovf1);
