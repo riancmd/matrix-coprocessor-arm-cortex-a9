@@ -1,12 +1,12 @@
 module det4(
-    input signed [127:0] m, //uma matriz 4x4 com 8 bits cada elemento
+    input signed [127:0] matrix, //uma matriz 4x4 com 8 bits cada elemento
     input rst,
     output reg signed [7:0] det,
     output reg ovf
 );
 
     //cofatores
-    wire signed [7:0] cof1, cof2, cof3, cof4;
+    reg signed [7:0] cof1, cof2, cof3, cof4;
 
     //determinantes da 3x3 resultante
     wire signed [7:0] det1, det2, det3, det4; //determinante da 3x3 resultante eliminando cada elemento da primeira linha
@@ -19,20 +19,20 @@ module det4(
     reg [9:0] temp_det; //grande o suficiente para conter uma soma de 4 números de 8 bits
 
     //circuito de cálculo de determinante temporário (após eliminação de linhas e colunas)
-    always @(*) begin
-        det3 matriz1(
-            .m({m[8:31], m[40:63], m[72:95], m[104:127]}), .rst(rst), .det(det1). ovf(ovf_det1)
-        );
-        det3 matriz2(
-            .m({m[0:7], m[16:39], m[48:71], m[72:103], m[112:127]}), .rst(rst), .det(det2). ovf(ovf_det2)
-        );
-        det3 matriz3(
-            .m({m[0:15], m[24:47], m[56:79], m[88:111], m[120:127]}), .rst(rst), .det(det3). ovf(ovf_det3)
-        );
-        det3 matriz4(
-            .m({m[0:23], m[32:55], m[64:87], m[96:119]}), .rst(rst), .det(det4). ovf(ovf_det4)
-        );
-    end
+    
+	  det3 matriz1(
+			.m({matrix[119:96], matrix[87:64], matrix[55:32], matrix[23:0]}), .rst(rst), .det(det1), .ovf(ovf_det1)
+	  );
+	  det3 matriz2(
+			.m({matrix[127:120], matrix[111:88], matrix[79:56], matrix[47:24], matrix[15:0]}), .rst(rst), .det(det2), .ovf(ovf_det2)
+	  );
+	  det3 matriz3(
+			.m({matrix[127:112], matrix[103:72], matrix[71:48], matrix[39:16], matrix[7:0]}), .rst(rst), .det(det3), .ovf(ovf_det3)
+	  );
+	  det3 matriz4(
+			.m({matrix[127:104], matrix[95:72], matrix[63:40], matrix[31:8]}), .rst(rst), .det(det4), .ovf(ovf_det4)
+	  );
+  
 
     //circuito de cálculo dos cofatores
     always @(*) begin
