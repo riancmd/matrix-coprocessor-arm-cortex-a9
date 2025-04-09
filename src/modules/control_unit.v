@@ -50,7 +50,8 @@ module control_unit(
 	reg wren;
 	reg [1:0] counter;
 	wire [199:0] result_wire;
-	reg counter1, counter2;
+	
+	reg [1:0] counter_det;
 	
 	assign result_wire = result_reg;
 	
@@ -66,7 +67,7 @@ module control_unit(
 	
 	//Multiplicação entre matrizes
 	wire [31:0] multMA_result1, multMA_result2, multMA_result3, multMA_result4, multMA_result5,
-	multMI_result6, multMI_result7, multMI_result8, multMI_result9; //Resultados da multiplicação entre matrizes
+	multMA_result6, multMA_result7, multMA_result8, multMA_result9; //Resultados da multiplicação entre matrizes
 	
 	//Fios necessários para concatenacao
 	wire [31:0] multMA_slice1, multMA_slice2, multMA_slice3, multMA_slice4, multMA_slice5,
@@ -205,8 +206,8 @@ module control_unit(
 		m2_c0 = {matrix2_reg[199:192], matrix2_reg[159:152], matrix2_reg[119:112], matrix2_reg[79:72], matrix2_reg[39:32]};
 		m2_c1 = {matrix2_reg[191:184], matrix2_reg[151:144], matrix2_reg[111:104], matrix2_reg[71:64], matrix2_reg[31:24]};
 		m2_c2 = {matrix2_reg[183:176], matrix2_reg[143:136], matrix2_reg[103:96], matrix2_reg[63:56], matrix2_reg[23:16]};
-		m2_c3 = {matrix2_reg[175:168], matrix1_reg[135:128], matrix2_reg[95:88], matrix2_reg[55:38], matrix2_reg[15:8]};
-		m2_c4 = {matrix2_reg[167:160], matrix2_reg[127:120], matrix2_reg[87:80], matrix2_reg[37:30], matrix2_reg[7:0]};
+		m2_c3 = {matrix2_reg[175:168], matrix1_reg[135:128], matrix2_reg[95:88], matrix2_reg[55:48], matrix2_reg[15:8]};
+		m2_c4 = {matrix2_reg[167:160], matrix2_reg[127:120], matrix2_reg[87:80], matrix2_reg[47:40], matrix2_reg[7:0]};
 	end
 	
 	//Registradores intermediários
@@ -230,6 +231,8 @@ module control_unit(
 			wren = 0;
 			operation_active = 0;
 			counter = 0;
+			counter_det = 0;
+			
 		end 
 		else begin
 			case (state)
@@ -242,8 +245,7 @@ module control_unit(
 						ready = 0;
 						state = FETCH1;
 						counter = 0;
-						counter1 = 0;
-						counter2 = 0;
+						counter_det = 0;
 					end
 					else begin
 						state = IDLE;
@@ -252,34 +254,21 @@ module control_unit(
 				
 				//Estado FETCH inicial para receber as intruções
 				FETCH1: begin
-					if (counter1) begin
-						msize_reg = load[7:0];
-						opcode_reg = load[15:8];
-						adrss <= 2'b01;
-						state = FETCH2;
-					end
-					else begin
-						counter1 = counter1 + 1;
-					end
+					msize_reg = load[7:0];
+					opcode_reg = load[15:8];
+					adrss <= 2'b01;
+					state = FETCH2;
 				end
 				
 				//Estado FETCH para receber matriz 1
 				FETCH2: begin
-					counter1 = 0;
-					
-					if (counter2) begin
-						matrix1_reg = load[199:0];
-						adrss <= 2'b10;
-						state = FETCH3_DECODE;
-					end
-					else begin
-						counter2 = counter2 + 1;
-					end
+					matrix1_reg = load[199:0];
+					adrss <= 2'b10;
+					state = FETCH3_DECODE;
 				end
 				
 				//Estado FETCH para receber matriz 2 com a decodificação
 				FETCH3_DECODE: begin
-					counter2 = 0;
 					matrix2_reg = load[199:0];
 					adrss <= 2'b11;
 					state = EXECUTE;
@@ -371,7 +360,13 @@ module control_unit(
 						end
 						
 					endcase
-					state = WRITEBACK;
+					
+					if(counter_det == 0) begin
+						state = WRITEBACK;
+					end
+					else begin
+						counter_det = counter_det + 1;
+					end
 				end
 				
 				//Estado de escrita do resultado na memória
@@ -391,6 +386,7 @@ module control_unit(
 				
 				CLN: begin
 					adrss = 0;
+					ready = 0;
 					overflow = 0;
 					opcode_reg = 0;
 					result_reg = 0;
@@ -407,8 +403,6 @@ module control_unit(
 						ready = 0;
 						state = FETCH1;
 						counter = 0;
-						counter1 = 0;
-						counter2 = 0;
 					end
 					else begin
 						state = IDLE;
