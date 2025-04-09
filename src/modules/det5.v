@@ -10,7 +10,7 @@ module det5(
     wire ovf_det1, ovf_det2, ovf_det3, ovf_det4, ovf_det5; //respectivos overflows
 
     //regs temporários
-    reg [31:0] temp_det; //grande o suficiente
+    reg signed [31:0] temp_det; //grande o suficiente
 
     //temporarios para multiplicação intermediaria
     wire signed [7:0] n1, n2, n3, n4;

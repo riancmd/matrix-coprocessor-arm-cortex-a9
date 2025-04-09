@@ -40,6 +40,6 @@ module testDet4();
         #20
         matrix = 128'b00000010_00000011_00000100_00000011_00000001_00000110_00000100_00000101_00000011_00000000_00001001_00001000_00000001_00000010_00000001_00000001;
         //esta matriz é 2 3 4 3 1 6 4 5 3 0 9 8 1 2 1 1
-        //seu det é 37, não há overflow e nn há overflow intermediário
+        //seu det é 37, não há overflow e HÁ overflow intermediário
     end
 endmodule
