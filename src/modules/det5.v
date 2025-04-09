@@ -57,24 +57,24 @@ module det5(
         .rst(rst),
         .prod(n4),
         .ovf(ovf5)
-    )
+    );
 
     //circuito de cálculo de determinante temporário (após eliminação de linhas e colunas)
     
 	  det4 matriz1(
-			.m({matrix[151:120], matrix[111:80], matrix[71:40], matrix[31:0]}), .rst(rst), .det(det1), .ovf(ovf_det1)
+			.matrix({matrix[151:120], matrix[111:80], matrix[71:40], matrix[31:0]}), .rst(rst), .det(det1), .ovf(ovf_det1)
 	  );
 	  det4 matriz2(
-			.m({matrix[159:152], matrix[143:112], matrix[103:72], matrix[63:32], matrix[23:0]}), .rst(rst), .det(det2), .ovf(ovf_det2)
+			.matrix({matrix[159:152], matrix[143:112], matrix[103:72], matrix[63:32], matrix[23:0]}), .rst(rst), .det(det2), .ovf(ovf_det2)
 	  );
 	  det4 matriz3(
-			.m({matrix[159:144], matrix[135:104], matrix[95:64], matrix[56:24], matrix[15:0]}), .rst(rst), .det(det3), .ovf(ovf_det3)
+			.matrix({matrix[159:144], matrix[135:104], matrix[95:64], matrix[56:24], matrix[15:0]}), .rst(rst), .det(det3), .ovf(ovf_det3)
 	  );
 	  det4 matriz4(
-			.m({matrix[159:136], matrix[127:96], matrix[87:56], matrix[47:15], matrix[7:0]}), .rst(rst), .det(det4), .ovf(ovf_det4)
+			.matrix({matrix[159:136], matrix[127:96], matrix[87:56], matrix[47:15], matrix[7:0]}), .rst(rst), .det(det4), .ovf(ovf_det4)
 	  );
 	  det4 matriz5(
-			.m({matrix[159:128], matrix[119:88], matrix[79:48], matrix[39:8]}), .rst(rst), .det(det5), .ovf(ovf_det5)
+			.matrix({matrix[159:128], matrix[119:88], matrix[79:48], matrix[39:8]}), .rst(rst), .det(det5), .ovf(ovf_det5)
 	  );
 
     //cálculo de determinante da matriz 4x4
