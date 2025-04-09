@@ -5,8 +5,8 @@ module det3(
     output reg ovf
 );
 
-    reg [31:0] diag_1, diag_2; //regs para as duas diagonais (primária e secundária)
-    reg [31:0] temp_det; //reg temporário c tamanho suficiente p produto e soma
+    reg signed [31:0] diag_1, diag_2; //regs para as duas diagonais (primária e secundária)
+    reg signed [31:0] temp_det; //reg temporário c tamanho suficiente p produto e soma
 
     always@(*) begin
         if(rst) begin //verifica reset, zerando ovf e det
