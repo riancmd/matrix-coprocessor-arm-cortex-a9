@@ -8,7 +8,7 @@ module det2 (input signed [15:0] l1, l2, //duas linhas de 16bits cada, havendo 2
 
 	always @(*) begin
 		 if (rst) begin //se houver sinal de reset
-			  temp_det = 17'b0;
+			  temp_det = 0;
 			  ovf = 0;
 		 end
 
