@@ -8,7 +8,7 @@
 * [Como instalar?](#-como-instalar)
 * [Requisitos do problema](#-requisitos-do-problema)
 * [Recursos utilizados](#-recursos-utilizados)
-* [Metodologia](#-metodologia)
+* [Metodologia](#metodologia)
   * [Unidade de controle](#-unidade-de-controle)
   * [Memória](#-memória)
   * [Unidade Logico Aritmética](#-unidade-lógico-aritmética)
@@ -19,7 +19,7 @@
 * [Referências](#-referências)
 * [Colaboradores](#-colaboradores)
 
-## 🧠Introdução
+## 🧠 Introdução
 Os computadores possuem como um dos seus componentes principais e um dos mais conhecidos o **processador** (CPU - Central Processing Unit), que realizará o controle de dados que chega e saem em seu sistema, os processos de instruções, a devida sinalização para outros componentes dos próximos passos a serem executados.
 
 Contudo, muitas operações e cálculos existem muito poder de processamento, o que pode sobrecarregar a CPU e fazer com que o sistema em geral fique mais lento em seus processos. Devido a isso, surge a ideia do **coprocessador**, uma unidade de processamento que depende da CPU e serve para realizar operações específicas de forma mais eficiente, retirando esse peso do processador, tendo como exemplo as GPUs (Graphics Processing Unit).
@@ -60,14 +60,17 @@ O problema exige um coprocessador que será capaz de realizar cálculos intensiv
 ## 🧰 Recursos utilizados
 * ### Placa DE1_SoC
 A placa DE1_SoC, da família Cyclone V possui tanto uma divisão HPS(Hard Processor System) quando a parte **FPGA**, está ultima sendo a parte programavél que receberá a descrição do hardware do projeto e possuirá a memória.
+
 [Manual da placa](https://www.intel.com/content/www/us/en/developer/articles/technical/fpga-academic-boards.html)
 
 * ### Quartus Prime Lite 20.1 e 23.1
 Software que permite criar códigos em linguagem de descrição de máquina, a destacar para o projeto, o verilog, além de disponibilizar diversos recursos de depuração, simulação, otmização, entre outros, usados no processo de criação do coprocessador.
+
 [Site Oficial do Software](https://www.intel.com.br/content/www/br/pt/products/details/fpga/development-tools/quartus-prime.html)
 
 * ### Icarus Verilog
 O Icarus verilog é um compilador open-source da linguagem verilog, que disponibiliza uma maneira fácil de realizar testes (**testbench**) a módulos individuais do sistema, sem necessitar o uso da placa física ou outros modos mais complexos de simulação.
+
 [Link de Download](https://bleyer.org/icarus/)
 
 * ### Github 
@@ -116,11 +119,11 @@ Para acessá-la bastar ir no ambiente Quartus: **View ➜ Utilitiy Windows ➜ I
 
 Com isso, uma nova janela se abrirá, como na imagem abaixo:
 
-![On Chip Memory](img/on_chip_memory)
+![On Chip Memory](img/on_chip_memory.png)
 
 Na qual foi configurado para o projeto uma saída de 200 bits por endereço e 4 **Words**, que significam a quantidade de endereço para o projeto. Uma vez inicializado essa memória RAM, basta instanciar o módulo gerado dentro do escopo da unidade de controle. O módulo pode ser visto abaixo:
 
-![Memory_module](img/memory_module)
+![Memory_module](img/memory_module.png)
 
 * **clock** ➜ a entrada de clock do módulo;
 * **data** ➜ entrada de dados para serem escrito na memória, que para o coprocessador criado, representa o resultado (result_reg);
@@ -136,7 +139,7 @@ Por fim, a último parte do coprocessador versa sobre como as operações entre 
 
 A codificação dos bits do registrador usado para armazenar o código de operação se enconra abaixo:
 
-![opcode](img/opcode)
+![opcode](img/opcode.png)
 
 ### SOMA
 O processo de adição de matrizes ocorre através do módulo **add_M.v**, um módulo que recebe como entrada uma array de 40 bits para representar uma linha (que por padrão tem número máximo de 5 elementos, logo 40 bits) da matriz 1 e outro array de 40 bits para representar a linha correspondente da matriz 2, além de outros sinais de controle como o **rst(reset dos valores internos do módulo)**.
@@ -228,9 +231,17 @@ Apenas um módulo definido como **TOP-LEVEL**, ou seja, o módulo de entrada dos
 Para realizar os testes individuais das operações, foram criados módulos de teste, chamados **testbench**, que serve para depurar cada aplicação criada. Além disso, como o teste em placa ou teste usando alguma ferramenta do **Quartus** se torna demorada, foi usado o **Icarus Verilog**, que permite realizar testes de forma rápida, simples e eficiente.
 Os testes feitos estão listados abaixo:
 
-* Adição
-![testbench_add](img/testbench_add)  ![icarus_test_add](img/icarus_test_add)
-
+| Operação                  | Testbench                                       | Simulação (Icarus Verilog)                      |
+|---------------------------|--------------------------------------------------|--------------------------------------------------|
+| **Adição**                | ![testbench_add](img/testbench_add.png)         | ![icarus_test_add](img/icarus_test_add.png)     |
+| **Subtração**             | ![testbench_sub](img/testbench_sub.png)         | ![icarus_test_sub](img/icarus_test_sub.png)     |
+| **Mult. entre Matrizes**  | ![testbench_multMA](img/testbench_multMA.png)   | ![icarus_test_multMA](img/icarus_test_multMA.png) |
+| **Mult. por Escalar**     | ![testbench_multMI](img/testbench_multMI.png)   | ![icarus_test_multMI](img/icarus_test_multMI.png) |
+| **Determinante 2x2**      | ![testbench_det2](img/testbench_det2.png)       | ![icarus_test_det2](img/icarus_test_det2.png)   |
+| **Determinante 3x3**      | ![testbench_det3](img/testbench_det3.png)       | ![icarus_test_det3](img/icarus_test_det3.png)   |
+| **Determinante 4x4**      | ![testbench_det4](img/testbench_det4.png)       | ![icarus_test_det4](img/icarus_test_det4.png)   |
+| **Determinante 5x5**      | ![testbench_det5](img/testbench_det5.png)       | ![icarus_test_det5](img/icarus_test_det5.png)   |
+| **Oposta**                | ![testbench_opp](img/testbench_opp.png)         | ![icarus_test_opp](img/icarus_test_opp.png)     |
 
 
 ### 🧾 Como realizar testes?
