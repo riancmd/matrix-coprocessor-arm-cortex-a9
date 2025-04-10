@@ -1,27 +1,17 @@
 `timescale 1ns / 1ps
 module testSub();
-	reg clk;
 	reg rst;
 	reg signed [39:0] m1, m2;
 	wire signed [39:0] m_out;
 	wire ovf;
 	
 	//instancia o módulo de subtração
-	sub_M uut(
-			.clk (clk),
-			.m1 (m1),
-			.m2 (m2),
-			.rst (rst),
-			.m_out (m_out),
-			.ovf (ovf)
+	sub_M uut(.m1 (m1),
+		  .m2 (m2),
+		  .rst (rst),
+		  .m_out (m_out),
+		  .ovf (ovf)
 	);
-	
-	//gera sinal de clock
-	initial begin
-		$display("Inicia clock");
-		clk = 1'b0;
-		forever #1 clk = ~clk;
-	end
 	
 	
 	//gera sinal de reset

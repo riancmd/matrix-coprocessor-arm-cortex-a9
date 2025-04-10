@@ -1,27 +1,17 @@
 `timescale 1ns / 1ps
-module testAdd(); //FUNCIONANDO
-	reg clk;
+module testAdd(); 
 	reg rst;
 	reg signed [39:0] m1, m2;
 	wire signed [39:0] m_out;
 	wire ovf;
 	
 	//instancia o módulo de soma
-	add_M uut(
-			.clk (clk),
-			.m1 (m1),
-			.m2 (m2),
-			.rst (rst),
-			.m_out (m_out),
-			.ovf (ovf)
+	add_M uut(.m1 (m1),
+		  .m2 (m2),
+		  .rst (rst),
+		  .m_out (m_out),
+		  .ovf (ovf)
 	);
-	
-	//gera sinal de clock
-	initial begin
-		$display("Inicia clock");
-		clk = 1'b0;
-		forever #1 clk = ~clk;
-	end
 	
 	
 	//gera sinal de reset

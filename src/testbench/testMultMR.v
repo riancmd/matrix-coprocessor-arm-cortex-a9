@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 
 module testMultMR();
-    reg clk;
     reg rst;
     reg signed [39:0] m_1; //40bits = 5 números de 8 bits
     reg signed [7:0] n; //numero real de 8 bits
@@ -10,8 +9,7 @@ module testMultMR();
     
     // Instância do módulo de multiplicação
 
-    mult_MR uut(
-        .clk(clk),
+    mult_MI uut(
         .m_1(m_1),
         .n(n),
         .rst(rst),
@@ -19,13 +17,7 @@ module testMultMR();
         .ovf(ovf)
     );
     
-    // Gera sinal de clock
-    initial begin
-        $display("Inicia clock");
-        clk = 1'b0;
-        forever #1 clk = ~clk;
-    end
-    
+  
     // Gera sinal de reset
     initial begin
         $display("Inicia reset");
@@ -36,7 +28,7 @@ module testMultMR();
     // Testa os estímulos
     initial begin
         $display("Testa valores");
-        $monitor("tempo=%3d, rst=%b, lin=%80b, n=%80b, n_out=%32b, ovf=%b", 
+        $monitor("tempo=%3d, rst=%b, lin=%40b, n=%8b, n_out=%40b, ovf=%b", 
                  $time, rst, m_1, n, m_out, ovf);
             
         #15; // Espera reset terminar

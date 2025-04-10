@@ -1,23 +1,17 @@
 module testOppM();
-    reg clk; //sinal de clock
     reg signed [39:0] m_1;//linha da matriz
     reg rst; //sinal de reset
+    wire ovf; //sinal de overflow
     wire signed [39:0] m_out; //matriz inversa
 
 
 opp_M uut(
-    .clk (clk),
     .m_1 (m_1),
     .rst (rst),
-    .m_out (m_out)
+    .m_out (m_out),
+    .ovf(ovf)
 );
 
-// Gera sinal de clock
-    initial begin
-        $display("Inicia clock");
-        clk = 1'b0;
-        forever #1 clk = ~clk;
-    end
     
     // Gera sinal de reset
     initial begin
@@ -29,8 +23,8 @@ opp_M uut(
     // Testa os estímulos
     initial begin
         $display("Testa valores");
-        $monitor("tempo=%3d, rst=%b, m_1=%80b, m_out=%32b", 
-                 $time, rst, m_1, m_out);
+        $monitor("tempo=%3d, rst=%b, m_1=%40b, m_out=%40b, ovf=%b", 
+                 $time, rst, m_1, m_out, ovf);
         
         #15
         //Teste com números positivos
@@ -45,6 +39,14 @@ opp_M uut(
         m_1 = 40'b11111111_11111101_11111110_11111011_00000000;
         //m_out = [1, 3, 2, 5, 0]
         //m_out = 00000001_00000011_00000010_00000101_00000000
+
+	#20
+        //Teste com overflow(-128)
+        //m_1 = [-128, 0, 0, 0, 0]
+        m_1 = 40'b10000000_00000000_00000000_00000000_00000000;
+        //m_out = [-128, 0, 0, 0, 0]
+        //m_out = 10000000_00000000_00000000_00000000_00000000
+
     end
 
 endmodule

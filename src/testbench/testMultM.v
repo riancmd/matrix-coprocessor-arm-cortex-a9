@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 
 module testMultM();
-    reg clk;
     reg rst;
     reg signed [79:0] lin, col;  // 80 bits = 10 números de 8 bits
     wire signed [31:0] n_out;    // 32 bits = 4 números de 8 bits
@@ -10,7 +9,6 @@ module testMultM();
     // Instância do módulo de multiplicação
 
     mult_M uut(
-        .clk(clk),
         .lin(lin),
         .col(col),
         .rst(rst),
@@ -18,12 +16,6 @@ module testMultM();
         .ovf(ovf)
     );
     
-    // Gera sinal de clock
-    initial begin
-        $display("Inicia clock");
-        clk = 1'b0;
-        forever #1 clk = ~clk;
-    end
     
     // Gera sinal de reset
     initial begin
